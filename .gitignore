@@ -1,0 +1,61 @@
+# LaTeX to PDF stuff
+*.aux
+*.bbl
+*.blg
+*.dvi
+*.log
+*.pdf
+*.gz
+*.nav
+*.out
+*.snm
+*.toc
+*.run.xml
+*-blx.bib
+*.ps
+*.4og
+*.4od
+*.4om
+*.vrb
+*.bcf
+*.run.xml
+
+# LaTeX to HTML stuff
+*.4tc
+*.html
+*.idv
+*.lg
+*.tmp
+*.xref
+*.4ct
+
+# LaTeX to PDF for elsevier stuff
+*.spl
+
+#latexmk
+*_latexmk
+*.fls
+*.tmp.*
+*.fmt
+*.mtc*
+
+# There no need to save zips
+*.zip
+
+# latexdiff stuff
+*~*~
+
+# Vim stuff
+.*.swp
+*.swo
+*~
+
+# Emacs stuff
+\#*
+*\#
+
+# pdfpc cache
+*.pdfpc
+
+# bibexport results
+bibexport.bib*
