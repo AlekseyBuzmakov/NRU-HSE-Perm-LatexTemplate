@@ -4,7 +4,7 @@
 \LoadClass[fontsize=14bp]{scrreprt}
 \RequirePackage{ifpdf}
 \RequirePackage{kvoptions}
-\RequirePackage[a4paper,left=3cm,right=15mm,top=20mm,bottom=20mm]{geometry}
+\RequirePackage[a4paper,left=25mm,right=10mm,top=20mm,bottom=25mm,footskip=10mm]{geometry}
 
 \RequirePackage{cmap}						% Улучшенный поиск русских слов в полученном pdf-файле
 \RequirePackage[T2A]{fontenc}				% Поддержка русских букв
@@ -21,9 +21,59 @@
 %%% Размер шрифатов у заголовков %%%
 \RequirePackage{titlesec}
 
+%%% Table of Contents %%%
+\RequirePackage{tocloft}
+
 \RequirePackage{amsmath}
 \RequirePackage{amsfonts}
 \RequirePackage{amssymb}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Установка основных характеристик текста
+
+\sloppy				% Избавляемся от переполнений
+\clubpenalty=10000		% Запрещаем разрыв страницы после первой строки абзаца
+\widowpenalty=10000		% Запрещаем разрыв страницы после последней строки абзаца
+
+\linespread{1.25} % Полуторный интервал
+\setlength{\parindent}{12.5mm} % Отступ красной строки
+
+%%% Главы и разделы %%%
+\titleformat{\chapter}%[display]
+  {\Large\bfseries\centering}
+  {\chaptertitlename\ \thechapter.}{4pt}{}
+\titlespacing*{\chapter}{0pt}{0pt}{12pt}
+\titleformat{\section}
+  {\large\centering}
+  {\thesection.}{4pt}{}
+\titlespacing*{\section}{0pt}{12pt}{6pt}
+\titleformat{\subsection}
+  {\centering}
+  {\thesubsection.}{3pt}{}
+\titlespacing*{\subsection}{0pt}{8pt}{4pt}
+\titleformat{\subsubsection}
+  {\centering}
+  {\thesubsubsection.}{3pt}{}
+\titlespacing*{\subsubsection}{0pt}{8pt}{4pt}
+
+%%% Оглавление %%%
+\renewcommand{\cftchapdotsep}{\cftdotsep}
+\let\@originalchapter\chapter
+\def\chapter{
+	 \@ifstar\chapterstar\@originalchapter
+ }
+\def\chapterstar{
+	 \@ifstar\chapter@nonum@notoc\chapter@nonum
+ }
+\newcommand\chapter@nonum@notoc[2][]{
+   \@originalchapter*{#2}
+}
+\newcommand\chapter@nonum[2][]{
+   \@originalchapter*{#2}
+   \addcontentsline{toc}{chapter}{#2}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%
+% Обработка опций пакета
 
 \SetupKeyvalOptions{
 	family=HSE,
@@ -34,6 +84,8 @@
 \def\@typeString{UNKNOWN WORK TYPE}
 \def\@specName{UNKOWN SPECIALIZATION}
 \def\@specCode{00.00.00.UNKOWN SPECIALIZATION}
+\newif\ifHasReviewer
+\HasReviewerfalse
 
 % Available options for the specialiazation
 % PI -- Software Engeneers
@@ -54,6 +106,7 @@
 }
 \DeclareVoidOption{VKR}{
 	\def\@typeString{Выпускная квалификационная работа}
+	\HasReviewertrue
 }
 
 \DeclareDefaultOption{%
@@ -70,15 +123,27 @@
 \def\@year{1900}
 \def\@supervisorTitle{}
 \def\@supervisorName{I.I.~Ivanov}
+\def\@reviewerTitle{}
+\def\@reviewerName{I.I.~Ivanov}
+\def\@abstract{TODO}
 
 \newcommand{\Year}[1]{\def\@year{#1}}
 \newcommand{\supervisor}[2]{
 	\def\@supervisorTitle{#1}
-	\def\@suprevisorName{#2}
+	\def\@supervisorName{#2}
+}
+\newcommand{\reviewer}[2]{
+	\def\@reviewerTitle{#1}
+	\def\@reviewerName{#2}
+}
+\newcommand{\Abstract}[1]{
+	\def\@abstract{#1}
 }
 
 \renewcommand{\maketitle}{
-  \thispagestyle{empty}
+{
+	\thispagestyle{empty}
+
 	\centering
 
 	{
@@ -114,8 +179,19 @@
 	\vfill
 	\vfill
 
-	\hfill\begin{minipage}{0.3\textwidth}
-		Руководитель: \\
+	\ifHasReviewer
+		\begin{minipage}[t]{0.4\textwidth}
+			Рецензент \\
+			\@reviewerTitle
+
+			\vspace{2mm}
+
+			\@reviewerName
+		\end{minipage}
+	\fi
+	\hfill
+	\begin{minipage}[t]{0.4\textwidth}
+		Руководитель \\
 		\@supervisorTitle
 
 		\vspace{10mm}
@@ -133,4 +209,16 @@
 	Пермь, \@year{} год
 
 	\newpage
+}
+
+\chapter**{Аннотация}
+
+\@abstract
+
+\chapter**{Оглавление}
+
+\@starttoc{toc}
+
+\newpage
+
 }
