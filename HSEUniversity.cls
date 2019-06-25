@@ -12,6 +12,10 @@
 \RequirePackage{csquotes}
 \RequirePackage[english,russian]{babel}	% Языки: русский, английский
 
+
+\RequirePackage[font=small,skip=4pt]{caption}
+\RequirePackage{graphicx}
+
 %\usepackage{pscyr}						% Красивые русские шрифты
 %\renewcommand{\rmdefault}{ftm} % Включаем Times New Roman
 
@@ -37,6 +41,9 @@
 
 \linespread{1.25} % Полуторный интервал
 \setlength{\parindent}{12.5mm} % Отступ красной строки
+
+\captionsetup[table]{position=t,singlelinecheck=false, justification=RaggedLeft,labelsep=period}
+\captionsetup[figure]{labelfont={bf},textfont={bf},position=b,singlelinecheck=false,labelsep=period,justification=centering}
 
 %%% Главы и разделы %%%
 \titleformat{\chapter}%[display]
@@ -221,4 +228,38 @@
 
 \newpage
 
+}
+
+\newsavebox{\TABLEbox}
+\newenvironment{TABLE}[2][t]
+{
+  \def\@tableCaption{#2}
+  \begin{table}[#1]
+  \begin{lrbox}{\TABLEbox}
+  \small
+}{
+  \end{lrbox}
+
+  \centering
+  \captionbox[l]{\@tableCaption}{
+    \usebox{\TABLEbox}
+  }
+  \end{table}
+}
+
+
+\newsavebox{\FIGUREbox}
+\newenvironment{FIGURE}[2][t]
+{
+  \def\@figureCaption{#2}
+  \begin{figure}[#1]
+  \begin{lrbox}{\FIGUREbox}
+}{
+  \end{lrbox}
+
+  \centering
+  \usebox{\FIGUREbox}
+
+  \caption{\@figureCaption}
+  \end{figure}
 }
