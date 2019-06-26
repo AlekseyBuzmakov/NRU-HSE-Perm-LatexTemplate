@@ -27,6 +27,7 @@
 
 %%% Table of Contents %%%
 \RequirePackage{tocloft}
+\RequirePackage{titletoc}
 
 \RequirePackage{amsmath}
 \RequirePackage{amsfonts}
@@ -131,6 +132,12 @@
    \@originalchapter*{#2}
    \addcontentsline{toc}{chapter}{#2}
 }
+\titlecontents{chapter}% <section-type>
+  [0pt]% <left>
+  {}% <above-code>
+  {\bfseries\chaptername\ \thecontentslabel.\enskip}% <numbered-entry-format>
+  {}% <numberless-entry-format>
+  {\bfseries\dotfill\contentspage}% <filler-page-format>
 %%%%%%%%%%%%%%%%%%%%%%%%
 % Обработка опций пакета
 
