@@ -10,7 +10,7 @@
 \RequirePackage[T2A]{fontenc}				% Поддержка русских букв
 \RequirePackage[utf8]{inputenc}				% Кодировка utf8
 \RequirePackage{csquotes}
-\RequirePackage[russian,english]{babel}	% Языки: русский, английский
+\RequirePackage[russian]{babel}	% Языки: русский, английский
 
 
 \RequirePackage[font=small,skip=4pt]{caption}
@@ -41,7 +41,6 @@
 \RequirePackage[
 	style=gost-numeric-min,
 	language=russian,
-        autolang=other,
 	babel=other,
 	backend=biber,
 	defernumbers=true,% Нумерация начинается как только встречается группа.
@@ -78,9 +77,11 @@
 \NewBibliographyString{langjapanese}
 \NewBibliographyString{fromjapanese}
 
-\newcommand{\putibliography}{
-	%\chapter*{Библиографический список}
-	\printbibliography[env=gostbibliography] %title={Библиографический список},
+\newcommand{\putbibliography}{
+	\chapter**{Библиографический список}
+	\addcontentsline{toc}{chapter}{Библиографический список}
+
+	\printbibliography[env=gostbibliography,heading=none] %title={Библиографический список},
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
