@@ -10,7 +10,7 @@
 \RequirePackage[T2A]{fontenc}				% Поддержка русских букв
 \RequirePackage[utf8]{inputenc}				% Кодировка utf8
 \RequirePackage{csquotes}
-\RequirePackage[english,russian]{babel}	% Языки: русский, английский
+\RequirePackage[russian,english]{babel}	% Языки: русский, английский
 
 
 \RequirePackage[font=small,skip=4pt]{caption}
@@ -31,6 +31,57 @@
 \RequirePackage{amsmath}
 \RequirePackage{amsfonts}
 \RequirePackage{amssymb}
+
+
+\RequirePackage[linktocpage=true,plainpages=false,pdfpagelabels=false]{hyperref}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Библиография %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\RequirePackage[
+	style=gost-numeric-min,
+	language=russian,
+        autolang=other,
+	babel=other,
+	backend=biber,
+	defernumbers=true,% Нумерация начинается как только встречается группа.
+	sorting=none,
+	url=false,
+	doi=false,
+	isbn=false,
+	movenames=false,
+	maxnames=100
+]{biblatex}
+\renewcommand*{\multicitedelim}{\addcomma\space}
+
+%\usepackage{cite} % Красивые ссылки на литературу
+% Настройки языка в списке литературы.
+\DeclareSourcemap{
+	\maps[datatype=bibtex,overwrite=false]{
+	 \map{
+			\step[fieldset=language,fieldvalue=english]
+	 }
+	\map{
+		\step[fieldsource=language,match=\regexp{English},replace=\regexp{english}]
+	}
+	\map{
+		\step[fieldsource=language]
+		\step[fieldset=hyphenation,origfieldval]
+	}
+%   \map{
+			%\step[fieldset=hyphenation,fieldvalue={english}]
+		%}
+	}
+}
+%%%%%%%%%%%%%%%%%%%%%%
+% ошибка в russian.lbx
+\NewBibliographyString{langjapanese}
+\NewBibliographyString{fromjapanese}
+
+\newcommand{\putibliography}{
+	%\chapter*{Библиографический список}
+	\printbibliography[env=gostbibliography] %title={Библиографический список},
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Установка основных характеристик текста
