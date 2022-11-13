@@ -1,22 +1,22 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{HSEUniversity}[2019-06-15 Template for dessirtations and other artefacts]
+\ProvidesClass{HSEUniversity}[2022-11-13 Template for dessirtations and other artefacts]
 %\LoadClass[a4paper]{extreport}
-\LoadClass[fontsize=14bp]{scrreprt}
+\LoadClass[fontsize=13bp]{scrreprt} % Times New Roman 13 size
 \RequirePackage{ifpdf}
 \RequirePackage{kvoptions}
-\RequirePackage[a4paper,left=25mm,right=10mm,top=20mm,bottom=25mm,footskip=10mm]{geometry}
+\RequirePackage[a4paper,left=30mm,right=15mm,top=20mm,bottom=25mm,footskip=15mm]{geometry}
 
-\RequirePackage{cmap}						% Улучшенный поиск русских слов в полученном pdf-файле
-\RequirePackage[T2A]{fontenc}				% Поддержка русских букв
-\RequirePackage[utf8]{inputenc}				% Кодировка utf8
+\RequirePackage{cmap}            % Улучшенный поиск русских слов в полученном pdf-файле
+\RequirePackage[T2A]{fontenc}    % Поддержка русских букв
+\RequirePackage[utf8]{inputenc}  % Кодировка utf8
 \RequirePackage{csquotes}
-\RequirePackage[russian]{babel}	% Языки: русский, английский
+\RequirePackage[russian]{babel}  % Языки: русский, английский
 
 
 \RequirePackage[font=small,skip=4pt]{caption}
 \RequirePackage{graphicx}
 
-%\usepackage{pscyr}						% Красивые русские шрифты
+%\usepackage{pscyr}    % Красивые русские шрифты
 %\renewcommand{\rmdefault}{ftm} % Включаем Times New Roman
 
 %%% Оформление абзацев %%%
@@ -40,38 +40,38 @@
 %%% Библиография %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \RequirePackage[
-	style=gost-numeric-min,
-	language=russian,
-	babel=other,
-	backend=biber,
-	defernumbers=true,% Нумерация начинается как только встречается группа.
-	sorting=none,
-	url=false,
-	doi=false,
-	isbn=false,
-	movenames=false,
-	maxnames=100
+  style=gost-numeric-min,
+  language=russian,
+  babel=other,
+  backend=biber,
+  defernumbers=true,% Нумерация начинается как только встречается группа.
+  sorting=none,
+  url=false,
+  doi=false,
+  isbn=false,
+  movenames=false,
+  maxnames=100
 ]{biblatex}
 \renewcommand*{\multicitedelim}{\addcomma\space}
 
 %\usepackage{cite} % Красивые ссылки на литературу
 % Настройки языка в списке литературы.
 \DeclareSourcemap{
-	\maps[datatype=bibtex,overwrite=false]{
-	 \map{
-			\step[fieldset=language,fieldvalue=english]
-	 }
-	\map{
-		\step[fieldsource=language,match=\regexp{English},replace=\regexp{english}]
-	}
-	\map{
-		\step[fieldsource=language]
-		\step[fieldset=hyphenation,origfieldval]
-	}
-%   \map{
-			%\step[fieldset=hyphenation,fieldvalue={english}]
-		%}
-	}
+  \maps[datatype=bibtex,overwrite=false]{
+    \map{
+      \step[fieldset=language,fieldvalue=english]
+    }
+    \map{
+      \step[fieldsource=language,match=\regexp{English},replace=\regexp{english}]
+    }
+    \map{
+      \step[fieldsource=language]
+      \step[fieldset=hyphenation,origfieldval]
+    }
+% \map{
+%   \step[fieldset=hyphenation,fieldvalue={english}]
+% }
+  }
 }
 %%%%%%%%%%%%%%%%%%%%%%
 % ошибка в russian.lbx
@@ -79,24 +79,25 @@
 \NewBibliographyString{fromjapanese}
 
 \newcommand{\putbibliography}{
-	\chapter**{Библиографический список}
-	\addcontentsline{toc}{chapter}{Библиографический список}
+  \chapter**{Библиографический список}
+  \addcontentsline{toc}{chapter}{Библиографический список}
 
-	\printbibliography[env=gostbibliography,heading=none] %title={Библиографический список},
+  \printbibliography[heading=none] %title={Библиографический список}, env=gostbibliography,
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Установка основных характеристик текста
 
-\sloppy				% Избавляемся от переполнений
-\clubpenalty=10000		% Запрещаем разрыв страницы после первой строки абзаца
-\widowpenalty=10000		% Запрещаем разрыв страницы после последней строки абзаца
+\sloppy   % Избавляемся от переполнений
+\clubpenalty=10000    % Запрещаем разрыв страницы после первой строки абзаца
+\widowpenalty=10000   % Запрещаем разрыв страницы после последней строки абзаца
 
-\linespread{1.25} % Полуторный интервал
+\linespread{1.5} % Полуторный интервал
 \setlength{\parindent}{12.5mm} % Отступ красной строки
 
-\captionsetup[table]{position=t,singlelinecheck=false, justification=RaggedLeft,labelsep=period}
-\captionsetup[figure]{labelfont={bf},textfont={bf},position=b,singlelinecheck=false,labelsep=period,justification=centering}
+% Попись таблицы и рисунка
+\captionsetup[table]{position=t, singlelinecheck=false, justification=raggedright, labelsep=endash, name=Таблица}
+\captionsetup[figure]{labelfont={bf, it}, textfont={bf, it}, position=b, singlelinecheck=false, labelsep=endash, justification=centering, name=Рисунок}
 
 %%% Главы и разделы %%%
 \titleformat{\chapter}%[display]
@@ -104,11 +105,11 @@
   {\chaptertitlename\ \thechapter.}{4pt}{}
 \titlespacing*{\chapter}{0pt}{0pt}{12pt}
 \titleformat{\section}
-  {\large\centering}
+  {\large\bfseries\centering}
   {\thesection.}{4pt}{}
 \titlespacing*{\section}{0pt}{12pt}{6pt}
 \titleformat{\subsection}
-  {\centering}
+  {\bfseries\centering}
   {\thesubsection.}{3pt}{}
 \titlespacing*{\subsection}{0pt}{8pt}{4pt}
 \titleformat{\subsubsection}
@@ -116,14 +117,22 @@
   {\thesubsubsection.}{3pt}{}
 \titlespacing*{\subsubsection}{0pt}{8pt}{4pt}
 
+%%% Маркированные списки %%%
+\renewcommand\labelitemi{--}
+\renewcommand\labelitemii{--}
+\renewcommand\labelitemiii{--}
+\renewcommand\labelitemiv{--}
+\RequirePackage{enumitem}
+\setlist{leftmargin=15mm}
+\setlist{nosep}
 %%% Оглавление %%%
 \renewcommand{\cftchapdotsep}{\cftdotsep}
 \let\@originalchapter\chapter
 \def\chapter{
-	 \@ifstar\chapterstar\@originalchapter
+  \@ifstar\chapterstar\@originalchapter
  }
-\def\chapterstar{
-	 \@ifstar\chapter@nonum@notoc\chapter@nonum
+ \def\chapterstar{
+   \@ifstar\chapter@nonum@notoc\chapter@nonum
  }
 \newcommand\chapter@nonum@notoc[2][]{
    \@originalchapter*{#2}
@@ -142,8 +151,8 @@
 % Обработка опций пакета
 
 \SetupKeyvalOptions{
-	family=HSE,
-	prefix=HSE@
+  family=HSE,
+  prefix=HSE@
 }
 
 \def\@facultyString{UNKNOWN FACULTY}
@@ -156,33 +165,33 @@
 % Available options for the specialiazation
 % PI -- Software Engeneers
 \DeclareVoidOption{PI}{
-	\def\@facultyString{Факультет экономики, менеджмента и бизнес-информатики}
-	\def\@specName{Программная инженерия}
-	\def\@specCode{09.03.04 Программная инженерия}
+  \def\@facultyString{Факультет социально-экономических и компьютерных науки}
+  \def\@specName{Программная инженерия}
+  \def\@specCode{09.03.04 Программная инженерия}
 }
 % BI -- Бизнес информатика
 \DeclareVoidOption{BI}{
-	\def\@facultyString{Факультет экономики, менеджмента и бизнес-информатики}
-	\def\@specName{Бизнес информатика}
-	\def\@specCode{09.03.04 Программная инженерия}
+  \def\@facultyString{Факультет социально-экономических и компьютерных науки}
+  \def\@specName{Бизнес информатика}
+  \def\@specCode{09.03.04 Программная инженерия}
 }
 % Available options for the type
 \DeclareVoidOption{KR}{
-	\def\@typeString{Курсовая работа}
+  \def\@typeString{Курсовая работа}
 }
 \DeclareVoidOption{VKR}{
-	\def\@typeString{Выпускная квалификационная работа}
-	\HasReviewertrue
+  \def\@typeString{Выпускная квалификационная работа}
+  \HasReviewertrue
 }
 
 \DeclareDefaultOption{%
-	\PackageWarningNoLine{\@currname}{%
-		Unknown option `\CurrentOption'\MessageBreak
-		is passed to class `report'%
-	}%
-	% Pass the option to class report
-	\expandafter\PassOptionToClass
-	\expandafter{\CurrentOption}{report}%
+  \PackageWarningNoLine{\@currname}{%
+    Unknown option `\CurrentOption'\MessageBreak
+    is passed to class `report'%
+  }%
+  % Pass the option to class report
+  \expandafter\PassOptionToClass
+  \expandafter{\CurrentOption}{report}%
 }
 \ProcessKeyvalOptions*
 
@@ -195,86 +204,86 @@
 
 \newcommand{\Year}[1]{\def\@year{#1}}
 \newcommand{\supervisor}[2]{
-	\def\@supervisorTitle{#1}
-	\def\@supervisorName{#2}
+  \def\@supervisorTitle{#1}
+  \def\@supervisorName{#2}
 }
 \newcommand{\reviewer}[2]{
-	\def\@reviewerTitle{#1}
-	\def\@reviewerName{#2}
+  \def\@reviewerTitle{#1}
+  \def\@reviewerName{#2}
 }
 \newcommand{\Abstract}[1]{
-	\def\@abstract{#1}
+  \def\@abstract{#1}
 }
 
 \renewcommand{\maketitle}{
 {
-	\thispagestyle{empty}
+  \thispagestyle{empty}
 
-	\centering
+  \centering
 
-	{
-		Пермский филиал федерального государственного автономного \\
-		образовательного учреждения высшего образования \\ 
-		<<Национальный исследовательский университет \\ 
-		<<Высшая школа экономики>>
-	}
+  {
+    Пермский филиал федерального государственного автономного \\
+    образовательного учреждения высшего образования \\
+    <<Национальный исследовательский университет \\
+    <<Высшая школа экономики>>
+  }
 
-	\vfill
+  \vfill
 
-	\textit{\@facultyString}
+  \@facultyString
 
-	\vfill
-	\vfill
-	\vfill
+  \vfill
+  \vfill
+  \vfill
 
-	\@author
+  \@author
 
-	\vfill
-	\vfill
+  \vfill
+  \vfill
 
-	\textbf{\MakeUppercase{\@title}}
+  \textbf{\MakeUppercase{\@title}}
 
-	\textit{\@typeString}
+  \textit{\@typeString}
 
-	\vfill
+  \vfill
 
-	студента образовательной программы <<\@specName>> \\
+  студента образовательной программы <<\@specName>> \\
   по направлению подготовки \textit{\underline{\@specCode}}
 
-	\vfill
-	\vfill
-	\vfill
+  \vfill
+  \vfill
+  \vfill
 
-	\ifHasReviewer
-		\begin{minipage}[t]{0.4\textwidth}
-			Рецензент \\
-			\@reviewerTitle
+  \ifHasReviewer
+  \begin{minipage}[t]{0.4\textwidth}
+    Рецензент \\
+    \@reviewerTitle
 
-			\vspace{2mm}
+    \vspace{2mm}
 
-			\@reviewerName
-		\end{minipage}
-	\fi
-	\hfill
-	\begin{minipage}[t]{0.4\textwidth}
-		Руководитель \\
-		\@supervisorTitle
+    \@reviewerName
+  \end{minipage}
+  \fi
+  \hfill
+  \begin{minipage}[t]{0.4\textwidth}
+    Руководитель \\
+    \@supervisorTitle
 
-		\vspace{10mm}
+    \vspace{10mm}
 
-		\hrule
-		\vspace{3mm}
+    \hrule
+    \vspace{3mm}
 
-		\@supervisorName
-	\end{minipage}
+    \@supervisorName
+  \end{minipage}
 
-	\vfill
-	\vfill
-	\vfill
+  \vfill
+  \vfill
+  \vfill
 
-	Пермь, \@year{} год
+  Пермь, \@year{} год
 
-	\newpage
+  \newpage
 }
 
 \chapter**{Аннотация}
@@ -322,3 +331,7 @@
   \caption{\@figureCaption}
   \end{figure}
 }
+
+\newcommand{\appendixsection}[1]{\section{#1}\addcontentsline{toc}{chapter}{Приложение \thesection. \currentname}} % не уверен что работает
+\newcommand{\reftable}[1]{см. таблицу ~\ref{#1}}
+\newcommand{\reffig}[1]{Рисунок ~\ref{#1}}
