@@ -1,10 +1,10 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{HSEUniversity}[2022-11-13 Template for dessirtations and other artefacts]
+\ProvidesClass{ProjectProposal}[2022-11-13 Template for project proposal]
 %\LoadClass[a4paper]{extreport}
 \LoadClass[fontsize=13bp]{scrreprt} % Times New Roman 13 size
 \RequirePackage{ifpdf}
 \RequirePackage{kvoptions}
-\RequirePackage[a4paper,left=30mm,right=15mm,top=20mm,bottom=25mm,footskip=15mm]{geometry}
+\RequirePackage[a4paper,left=25mm,right=25mm,top=25mm,bottom=25mm,footskip=25mm]{geometry}
 
 \RequirePackage{cmap}            % Улучшенный поиск русских слов в полученном pdf-файле
 \RequirePackage[T2A]{fontenc}    % Поддержка русских букв
@@ -36,20 +36,21 @@
 
 \RequirePackage[linktocpage=true,plainpages=false,pdfpagelabels=false]{hyperref}
 
+\setlength{\footskip}{20pt} % change postion of page number
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Библиография %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \RequirePackage[
-  style=gost-numeric-min,
+  style=apa,
   language=russian,
   babel=other,
   backend=biber,
-  defernumbers=true,% Нумерация начинается как только встречается группа.
-  sorting=none,
+  sorting=anyvt, % sorts entries by alphabetic label, name, year, volume, title;
   url=false,
   doi=false,
   isbn=false,
-  movenames=false,
+  %movenames=false,
   maxnames=100
 ]{biblatex}
 \renewcommand*{\multicitedelim}{\addcomma\space}
@@ -77,10 +78,10 @@
 % ошибка в russian.lbx
 \NewBibliographyString{langjapanese}
 \NewBibliographyString{fromjapanese}
-
+% \bibliographystyle{apacite}
 \newcommand{\putbibliography}{
-  \chapter**{Библиографический список}
-  \addcontentsline{toc}{chapter}{Библиографический список}
+  \chapter*{Reference}
+  \addcontentsline{toc}{chapter}{Reference}
 
   \printbibliography[heading=none] %title={Библиографический список}, env=gostbibliography,
 }
@@ -100,22 +101,29 @@
 \captionsetup[figure]{labelfont={bf, it}, textfont={bf, it}, position=b, singlelinecheck=false, labelsep=endash, justification=centering, name=Рисунок}
 
 %%% Главы и разделы %%%
+\RequirePackage{titlesec}
+\titleclass{\chapter}{straight}
 \titleformat{\chapter}%[display]
-  {\Large\bfseries\centering}
-  {\chaptertitlename\ \thechapter.}{4pt}{}
-\titlespacing*{\chapter}{0pt}{0pt}{12pt}
+  {\bfseries\centering}
+  {}{}{}
+\titlespacing*{\chapter}{1pt}{1pt}{1pt}
 \titleformat{\section}
-  {\large\bfseries\centering}
-  {\thesection.}{4pt}{}
-\titlespacing*{\section}{0pt}{12pt}{6pt}
+  {\bfseries\centering}
+  {}{3pt}{}
+\titlespacing*{\section}{0pt}{8pt}{4pt}
 \titleformat{\subsection}
   {\bfseries\centering}
-  {\thesubsection.}{3pt}{}
+  {}{3pt}{}
 \titlespacing*{\subsection}{0pt}{8pt}{4pt}
 \titleformat{\subsubsection}
   {\centering}
-  {\thesubsubsection.}{3pt}{}
+  {}{3pt}{}
 \titlespacing*{\subsubsection}{0pt}{8pt}{4pt}
+\RequirePackage{titletoc}
+\titlecontents{chapter}[1em]{}
+{\thecontentslabel\enspace}
+{}
+{\titlerule*[1pc]{.}\quad\contentspage}[\vskip 4pt]
 
 %%% Маркированные списки %%%
 \renewcommand\labelitemi{--}
@@ -130,23 +138,17 @@
 \let\@originalchapter\chapter
 \def\chapter{
   \@ifstar\chapterstar\@originalchapter
- }
- \def\chapterstar{
-   \@ifstar\chapter@nonum@notoc\chapter@nonum
- }
+}
+\def\chapterstar{
+  \@ifstar\chapter@nonum@notoc\chapter@nonum
+}
 \newcommand\chapter@nonum@notoc[2][]{
-   \@originalchapter*{#2}
+  \@originalchapter*{#2}
 }
 \newcommand\chapter@nonum[2][]{
-   \@originalchapter*{#2}
-   \addcontentsline{toc}{chapter}{#2}
+  \@originalchapter*{#2}
+  \addcontentsline{toc}{chapter}{#2}
 }
-\titlecontents{chapter}% <section-type>
-  [0pt]% <left>
-  {}% <above-code>
-  {\bfseries\chaptername\ \thecontentslabel.\enskip}% <numbered-entry-format>
-  {}% <numberless-entry-format>
-  {\bfseries\dotfill\contentspage}% <filler-page-format>
 %%%%%%%%%%%%%%%%%%%%%%%%
 % Обработка опций пакета
 
@@ -157,31 +159,23 @@
 
 \def\@facultyString{UNKNOWN FACULTY}
 \def\@typeString{UNKNOWN WORK TYPE}
-\def\@specName{UNKOWN SPECIALIZATION}
-\def\@specCode{00.00.00.UNKOWN SPECIALIZATION}
-\newif\ifHasReviewer
-\HasReviewerfalse
+%\def\@specName{UNKOWN SPECIALIZATION}
+%\def\@specCode{00.00.00.UNKOWN SPECIALIZATION}
+%\newif\ifHasReviewer
+%\HasReviewerfalse
 
 % Available options for the specialiazation
 % PI -- Software Engeneers
 \DeclareVoidOption{PI}{
-  \def\@facultyString{Факультет социально-экономических и компьютерных науки}
-  \def\@specName{Программная инженерия}
-  \def\@specCode{09.03.04 Программная инженерия}
+  \def\@facultyString{Faculty of Socio-Economic and Computer Sciences}
+  \def\@specName{Software engineering}
+  %\def\@specCode{09.03.04 Программная инженерия}
 }
 % BI -- Бизнес информатика
 \DeclareVoidOption{BI}{
-  \def\@facultyString{Факультет социально-экономических и компьютерных науки}
-  \def\@specName{Бизнес информатика}
-  \def\@specCode{09.03.04 Программная инженерия}
-}
-% Available options for the type
-\DeclareVoidOption{KR}{
-  \def\@typeString{Курсовая работа}
-}
-\DeclareVoidOption{VKR}{
-  \def\@typeString{Выпускная квалификационная работа}
-  \HasReviewertrue
+  \def\@facultyString{Faculty of Socio-Economic and Computer Sciences}
+  \def\@specName{Business informatics}
+  %\def\@specCode{09.03.04 Программная инженерия}
 }
 
 \DeclareDefaultOption{%
@@ -198,21 +192,16 @@
 \def\@year{1900}
 \def\@supervisorTitle{}
 \def\@supervisorName{I.I.~Ivanov}
-\def\@reviewerTitle{}
-\def\@reviewerName{I.I.~Ivanov}
-\def\@abstract{TODO}
+\def\@groupTitle{UNKNOWN GROUP}
+% \def\@reviewerTitle{}
+% \def\@reviewerName{I.I.~Ivanov}
+% \def\@abstract{TODO}
 
+\newcommand{\Group}[1]{\def\@groupTitle{#1}}
 \newcommand{\Year}[1]{\def\@year{#1}}
 \newcommand{\supervisor}[2]{
   \def\@supervisorTitle{#1}
   \def\@supervisorName{#2}
-}
-\newcommand{\reviewer}[2]{
-  \def\@reviewerTitle{#1}
-  \def\@reviewerName{#2}
-}
-\newcommand{\Abstract}[1]{
-  \def\@abstract{#1}
 }
 
 \renewcommand{\maketitle}{
@@ -221,76 +210,53 @@
 
   \centering
 
-  {
-    Пермский филиал федерального государственного автономного \\
-    образовательного учреждения высшего образования \\
-    <<Национальный исследовательский университет \\
-    <<Высшая школа экономики>>
-  }
+  \textbf{NATIONAL RESEARCH UNIVERSITY HIGHER SCHOOL OF ECONOMICS}
 
   \vfill
 
-  \@facultyString
+  \textbf{\@facultyString}
 
   \vfill
   \vfill
   \vfill
 
-  \@author
 
   \vfill
   \vfill
 
-  \textbf{\MakeUppercase{\@title}}
+  \textbf{\@title}
 
-  \textit{\@typeString}
+  {\bfseries PROJECT PROPOSAL}
 
   \vfill
 
-  студента образовательной программы <<\@specName>> \\
-  по направлению подготовки {\underline{\@specCode}}
 
   \vfill
   \vfill
   \vfill
 
-  \ifHasReviewer
-  \begin{minipage}[t]{0.4\textwidth}
-    Рецензент \\
-    \@reviewerTitle
-
-    \vspace{2mm}
-
-    \@reviewerName
-  \end{minipage}
-  \fi
   \hfill
   \begin{minipage}[t]{0.4\textwidth}
-    Руководитель \\
-    \@supervisorTitle
+    \text{\@author}  \@groupTitle
+  \end{minipage}
 
-    \vspace{10mm}
-
-    \hrule
-    \vspace{3mm}
-
-    \@supervisorName
+  \hfill
+  \begin{minipage}[t]{0.4\textwidth}
+    \textbf{Supervisor} \text{\@supervisorTitle} \text{\@supervisorName}
   \end{minipage}
 
   \vfill
   \vfill
   \vfill
 
-  Пермь, \@year{} год
+  Perm
+
+  \@year{}
 
   \newpage
 }
 
-\chapter**{Аннотация}
-
-\@abstract
-
-\chapter**{Оглавление}
+\chapter**{TOC}
 
 \@starttoc{toc}
 
@@ -332,6 +298,6 @@
   \end{figure}
 }
 
-\newcommand{\appendixsection}[1]{\section{#1}\addcontentsline{toc}{chapter}{Приложение \thesection. \currentname}} % не уверен что работает
+\newcommand{\appendixsection}[1]{\section{#1}\addcontentsline{toc}{section}{Приложение \thesection. \currentname}} % не уверен что работает
 \newcommand{\reftable}[1]{см. таблицу ~\ref{#1}}
 \newcommand{\reffig}[1]{Рисунок ~\ref{#1}}
