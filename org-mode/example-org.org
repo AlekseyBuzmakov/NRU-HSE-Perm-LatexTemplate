@@ -1,5 +1,5 @@
 #+STARTUP: latexpreview
-#+TITLE: Кратикий шаблон, демонстрирующий использование различных команд \LaTeX
+#+TITLE: Краткий шаблон, демонстрирующий использование различных команд \LaTeX
 #+AUTHOR: Семен Семеныч Сидоров
 #+LATEX_CLASS: HSEUniversity
 #+LATEX_CLASS_OPTIONS: [PI,KR]
