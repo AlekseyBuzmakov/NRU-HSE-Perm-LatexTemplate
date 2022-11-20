@@ -175,7 +175,7 @@
 \DeclareVoidOption{BI}{
   \def\@facultyString{Faculty of Socio-Economic and Computer Sciences}
   \def\@specName{Business informatics}
-  %\def\@specCode{09.03.04 Программная инженерия}
+  %\def\@specCode{38.03.05 Бизнес-информатика}
 }
 
 \DeclareDefaultOption{%
