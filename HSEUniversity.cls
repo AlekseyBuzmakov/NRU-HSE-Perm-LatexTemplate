@@ -287,7 +287,7 @@
 }
 
 \chapter**{Аннотация}
-
+\thispagestyle{empty}
 \@abstract
 
 \chapter**{Оглавление}

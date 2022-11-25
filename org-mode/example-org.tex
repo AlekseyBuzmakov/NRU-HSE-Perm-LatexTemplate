@@ -1,4 +1,4 @@
-% Created 2022-11-14 Пн 01:38
+% Created 2022-11-25 Пт 17:48
 % Intended LaTeX compiler: pdflatex
 \documentclass[PI,KR]{HSEUniversity}
          \usepackage{array,tabularx,tabulary,booktabs,longtable,multirow}
@@ -23,7 +23,7 @@
 \title{Краткий шаблон, демонстрирующий использование различных команд \LaTeX}
 \hypersetup{
  pdfauthor={Семен Семеныч Сидоров},
- pdftitle={Кратикий шаблон, демонстрирующий использование различных команд \LaTeX},
+ pdftitle={Краткий шаблон, демонстрирующий использование различных команд \LaTeX},
  pdfkeywords={},
  pdfsubject={},
  pdfcreator={Emacs 28.2 (Org mode 9.6)}, 
@@ -35,14 +35,14 @@
 \maketitle
 
 \chapter*{Введение}
-\label{sec:orgf18b874}
+\label{sec:org079afe4}
 Слова в тексте могут быть выделены, например: \textbf{Введение} представляет собой наиболее ответственную часть любой работы. Также покажем как пользоваться << кавычками>>. И << Кавычками ``внутри'' кавычек>>.
 
 Далее будет продемонстрирована работа основных команд \(\LaTeX{}\).
 \chapter{Написание работы}
-\label{sec:org1968dcd}
+\label{sec:orge00a603}
 \section{Пример нумерованных списков}
-\label{sec:orgc409bfd}
+\label{sec:orgf6673d0}
 Традиционно во введении:
 \begin{enumerate}
 \item обосновывается \textbf{актуальность} выбранной
@@ -54,7 +54,7 @@
 \item формулируются \textbf{основные положения, которые автор выносит на защиту}.
 \end{enumerate}
 \section{Пример маркированных списков}
-\label{sec:org55ca662}
+\label{sec:org69ef3e9}
 Традиционно во введении:
 \begin{itemize}
 \item обосновывается \textbf{актуальность} выбранной
@@ -67,17 +67,17 @@
 \end{itemize}
 
 \section{Заголовки разного уровня}
-\label{sec:org1946eb4}
+\label{sec:org7f8691a}
 Могут быть еще подразделы
 \subsection{Подраздел}
-\label{sec:org31a37b4}
+\label{sec:org66cd2a1}
 И под-подразделы
 \subsubsection{Под-подраздел}
-\label{sec:org8c7bbc2}
+\label{sec:org0dc5ac7}
 Текст
 
 \section{Оформление таблиц}
-\label{sec:org3baccc6}
+\label{sec:orgded3b7f}
 В качестве примера таблицы см. табл. \ref{tbl:example}.
 \begin{table}[htbp]
 \caption{\label{tbl:example}Пример таблицы}
@@ -95,7 +95,7 @@
 \end{table}
 
 \section{Оформление формул}
-\label{sec:org8c7492d}
+\label{sec:org9625f9b}
 Для оформления формул используются стандартные средства \(\LaTeX{}\) примеры inline (внутри-строчных формул): \(A^{i}_{k}\), \(A_{k}^{i}\), \(1+2+\dots+n\), \(x_{1}, x_{2}, \dots, x_{n}\).
 
 Формулы, за исключением формул, помещаемых в приложении, должны нумероваться сквозной нумерацией арабскими цифрами, которые записывают на уровне формулы справа в круглых скобках, например:
@@ -115,7 +115,7 @@
 
 Ссылки в тексте на порядковые номера формул дают в скобках, например, <<\(\dots{}\) в формуле \ref{eq:formula-1} \(\dots{}\) >>.
 \section{Оформление иллюстраций}
-\label{sec:orga9e4fdf}
+\label{sec:org3ca4fa0}
 На рис. \ref{fig:smile} --- пример картинки, которая распалагается в том месте, в котором она была расположена.
 
 \begin{figure}[h]
@@ -124,7 +124,7 @@
 \caption{\label{fig:smile}Пример картинки (в месте расположения)}
 \end{figure}
 \section{Оформление списка литературы}
-\label{sec:org6651315}
+\label{sec:org1445e45}
 Ссылки на источник в \(\LaTeX{}\) даются командой \texttt{\textbackslash{}cite} вне зависимости от типа источника. Информация об источниках должна быть размещена в \texttt{bibtex} файле, в данном случае в файле \texttt{library.bib}. Описание источника начинается с указания его типа \texttt{@article}, \texttt{@book}, \texttt{@inpoceeding}, \texttt{@online} и\textasciitilde{}др., далее идёт описание специфичных полей для этого типа источника. Сам файле указывается в самом начале \(\LaTeX{}\) файла командой \texttt{\textbackslash{}bibliography}. Для управления списком литературы рекомендуется использовать специализированные системы, например, \texttt{Mendeley}.
 
 Команда \texttt{\textbackslash{}cite} позволяет ссылаться на все типы источников по их имени: напимер, ссылка на книгу\textasciitilde{}\autocite{BookExample}, или на сайт\autocite{HSEDocuments2}\textasciitilde{}. Также можно ссылаться сразу на несколько источников \autocites{BookExample}[][]{ConferencePaperExample}[][]{ArticleExample}. Обратите внимание, что в этом случае нельзя добавлять пробелы между именами источников.
