@@ -331,7 +331,14 @@
   \caption{\@figureCaption}
   \end{figure}
 }
-
-\newcommand{\appendixsection}[1]{\section{#1}\addcontentsline{toc}{chapter}{Приложение \thesection. \currentname}} % не уверен что работает
+\newcommand\originalappendix{}
+\let\originalappendix\appendix
+\renewcommand{\appendix}{%
+  \originalappendix
+  \addtocontents{toc}{\bfseries\protect\value{tocdepth}=\chaptertocdepth}% appendix sections etc. not shown in ToC
+  \renewcommand\addchaptertocentry[2]{%
+    \addtocentrydefault{chapter}{}{\appendixname~##1. ##2}% убрать 2 чтобы без имени
+  }% appendix titles not shown in ToC
+}
 \newcommand{\reftable}[1]{см. таблицу ~\ref{#1}}
 \newcommand{\reffig}[1]{Рисунок ~\ref{#1}}
