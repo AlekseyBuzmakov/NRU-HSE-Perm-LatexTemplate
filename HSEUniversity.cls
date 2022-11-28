@@ -336,6 +336,9 @@
 \renewcommand{\appendix}{%
   \originalappendix
   \addtocontents{toc}{\bfseries\protect\value{tocdepth}=\chaptertocdepth}% appendix sections etc. not shown in ToC
+  \titleformat{\chapter}%[display] % капсом и без точки
+    {\Large\bfseries\centering}
+    {\MakeUppercase{\chaptertitlename}\ \thechapter.}{4pt}{}
   \renewcommand\addchaptertocentry[2]{%
     \addtocentrydefault{chapter}{}{\appendixname~##1. ##2}% убрать 2 чтобы без имени
   }% appendix titles not shown in ToC
