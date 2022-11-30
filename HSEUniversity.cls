@@ -12,7 +12,6 @@
 \RequirePackage{csquotes}
 \RequirePackage[russian]{babel}  % Языки: русский, английский
 
-
 \RequirePackage[font=small,skip=4pt]{caption}
 \RequirePackage{graphicx}
 

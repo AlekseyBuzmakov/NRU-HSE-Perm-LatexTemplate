@@ -12,7 +12,6 @@
 \RequirePackage{csquotes}
 \RequirePackage[russian]{babel}  % Языки: русский, английский
 
-
 \RequirePackage[font=small,skip=4pt]{caption}
 \RequirePackage{graphicx}
 
@@ -96,13 +95,13 @@
 \setlength{\parindent}{12.5mm} % Отступ красной строки
 
 % Попись таблицы и рисунка
-\captionsetup[table]{position=t, singlelinecheck=false, justification=raggedright, labelsep=endash, name=Таблица}
+\captionsetup[table]{position=t, singlelinecheck=false, justification=raggedleft, labelsep=endash, name=Таблица}
 \captionsetup[figure]{labelfont={bf, it}, textfont={bf, it}, position=b, singlelinecheck=false, labelsep=endash, justification=centering, name=Рисунок}
 
 %%% Главы и разделы %%%
 \titleformat{\chapter}%[display]
   {\Large\bfseries\centering}
-  {\chaptertitlename\ \thechapter.}{4pt}{}
+  {\chaptertitlename\ \thechapter}{4pt}{}
 \titlespacing*{\chapter}{0pt}{0pt}{12pt}
 \titleformat{\section}
   {\large\bfseries\centering}
@@ -130,10 +129,10 @@
 \let\@originalchapter\chapter
 \def\chapter{
   \@ifstar\chapterstar\@originalchapter
- }
- \def\chapterstar{
-   \@ifstar\chapter@nonum@notoc\chapter@nonum
- }
+}
+\def\chapterstar{
+  \@ifstar\chapter@nonum@notoc\chapter@nonum
+}
 \newcommand\chapter@nonum@notoc[2][]{
    \@originalchapter*{#2}
 }
@@ -144,7 +143,7 @@
 \titlecontents{chapter}% <section-type>
   [0pt]% <left>
   {}% <above-code>
-  {\bfseries\chaptername\ \thecontentslabel.\enskip}% <numbered-entry-format>
+  {\bfseries\chaptername\ \thecontentslabel\enskip}% <numbered-entry-format>
   {}% <numberless-entry-format>
   {\bfseries\dotfill\contentspage}% <filler-page-format>
 %%%%%%%%%%%%%%%%%%%%%%%%
@@ -167,13 +166,13 @@
 \DeclareVoidOption{PI}{
   \def\@facultyString{Факультет социально-экономических и компьютерных науки}
   \def\@specName{Программная инженерия}
-  \def\@specCode{09.03.04 Программная инженерия}
+  \def\@specCode{09.03.04 Программная инженерия}
 }
 % BI -- Бизнес информатика
 \DeclareVoidOption{BI}{
   \def\@facultyString{Факультет социально-экономических и компьютерных науки}
   \def\@specName{Бизнес информатика}
-  \def\@specCode{09.03.04 Программная инженерия}
+  \def\@specCode{09.03.04 Программная инженерия}
 }
 % Available options for the type
 \DeclareVoidOption{KR}{
@@ -335,9 +334,13 @@
 \let\originalappendix\appendix
 \renewcommand{\appendix}{%
   \originalappendix
+  \renewcommand{\thechapter}{\Asbuk{chapter}}
+  \titleformat{\chapter}%[display] % капсом и без точки
+    {\Large\bfseries\centering}
+    {\MakeUppercase{\chaptertitlename}\ \thechapter}{4pt}{}
   \addtocontents{toc}{\bfseries\protect\value{tocdepth}=\chaptertocdepth}% appendix sections etc. not shown in ToC
   \renewcommand\addchaptertocentry[2]{%
-    \addtocentrydefault{chapter}{}{\appendixname~##1. ##2}% убрать 2 чтобы без имени
+    \addtocentrydefault{chapter}{}{\MakeUppercase{\appendixname~##1} ##2}% добавить  чтобы добавить имя приложения
   }% appendix titles not shown in ToC
 }
 \newcommand{\reftable}[1]{см. таблицу ~\ref{#1}}

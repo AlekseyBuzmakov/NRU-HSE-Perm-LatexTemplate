@@ -92,3 +92,4 @@ $n$ -- число лет с момента покупки до момента п
 #+LATEX: \putbibliography
 #+LATEX: \appendix
 * ТЗ
+text text

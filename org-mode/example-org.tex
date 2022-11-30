@@ -1,4 +1,4 @@
-% Created 2022-11-28 Пн 23:21
+% Created 2022-11-30 Ср 12:25
 % Intended LaTeX compiler: pdflatex
 \documentclass[PI,KR]{HSEUniversity}
          \usepackage{array,tabularx,tabulary,booktabs,longtable,multirow}
@@ -35,14 +35,14 @@
 \maketitle
 
 \chapter*{Введение}
-\label{sec:org919484f}
+\label{sec:org7815dd1}
 Слова в тексте могут быть выделены, например: \textbf{Введение} представляет собой наиболее ответственную часть любой работы. Также покажем как пользоваться << кавычками>>. И << Кавычками ``внутри'' кавычек>>.
 
 Далее будет продемонстрирована работа основных команд \(\LaTeX{}\).
 \chapter{Написание работы}
-\label{sec:orgb0ebb2f}
+\label{sec:orgbb7354a}
 \section{Пример нумерованных списков}
-\label{sec:org65da5ff}
+\label{sec:org4831a58}
 Традиционно во введении:
 \begin{enumerate}
 \item обосновывается \textbf{актуальность} выбранной
@@ -54,7 +54,7 @@
 \item формулируются \textbf{основные положения, которые автор выносит на защиту}.
 \end{enumerate}
 \section{Пример маркированных списков}
-\label{sec:orgd226876}
+\label{sec:orgacfb5ac}
 Традиционно во введении:
 \begin{itemize}
 \item обосновывается \textbf{актуальность} выбранной
@@ -67,17 +67,17 @@
 \end{itemize}
 
 \section{Заголовки разного уровня}
-\label{sec:orga1ea4f0}
+\label{sec:org4947884}
 Могут быть еще подразделы
 \subsection{Подраздел}
-\label{sec:org9203f19}
+\label{sec:org09b10bd}
 И под-подразделы
 \subsubsection{Под-подраздел}
-\label{sec:orgd31c600}
+\label{sec:org2be6b33}
 Текст
 
 \section{Оформление таблиц}
-\label{sec:org5941682}
+\label{sec:org9a808aa}
 В качестве примера таблицы см. табл. \ref{tbl:example}.
 \begin{table}[htbp]
 \caption{\label{tbl:example}Пример таблицы}
@@ -95,7 +95,7 @@
 \end{table}
 
 \section{Оформление формул}
-\label{sec:org324c658}
+\label{sec:org41ca5ca}
 Для оформления формул используются стандартные средства \(\LaTeX{}\) примеры inline (внутри-строчных формул): \(A^{i}_{k}\), \(A_{k}^{i}\), \(1+2+\dots+n\), \(x_{1}, x_{2}, \dots, x_{n}\).
 
 Формулы, за исключением формул, помещаемых в приложении, должны нумероваться сквозной нумерацией арабскими цифрами, которые записывают на уровне формулы справа в круглых скобках, например:
@@ -115,7 +115,7 @@
 
 Ссылки в тексте на порядковые номера формул дают в скобках, например, <<\(\dots{}\) в формуле \ref{eq:formula-1} \(\dots{}\) >>.
 \section{Оформление иллюстраций}
-\label{sec:orgec593b4}
+\label{sec:org462a06a}
 На рис. \ref{fig:smile} --- пример картинки, которая распалагается в том месте, в котором она была расположена.
 
 \begin{figure}[h]
@@ -124,7 +124,7 @@
 \caption{\label{fig:smile}Пример картинки (в месте расположения)}
 \end{figure}
 \section{Оформление списка литературы}
-\label{sec:org738ee0e}
+\label{sec:orgb89d67a}
 Ссылки на источник в \(\LaTeX{}\) даются командой \texttt{\textbackslash{}cite} вне зависимости от типа источника. Информация об источниках должна быть размещена в \texttt{bibtex} файле, в данном случае в файле \texttt{library.bib}. Описание источника начинается с указания его типа \texttt{@article}, \texttt{@book}, \texttt{@inpoceeding}, \texttt{@online} и\textasciitilde{}др., далее идёт описание специфичных полей для этого типа источника. Сам файле указывается в самом начале \(\LaTeX{}\) файла командой \texttt{\textbackslash{}bibliography}. Для управления списком литературы рекомендуется использовать специализированные системы, например, \texttt{Mendeley}.
 
 Команда \texttt{\textbackslash{}cite} позволяет ссылаться на все типы источников по их имени: напимер, ссылка на книгу\textasciitilde{}\autocite{BookExample}, или на сайт\autocite{HSEDocuments2}\textasciitilde{}. Также можно ссылаться сразу на несколько источников \autocites{BookExample}[][]{ConferencePaperExample}[][]{ArticleExample}. Обратите внимание, что в этом случае нельзя добавлять пробелы между именами источников.
@@ -134,5 +134,6 @@
 \putbibliography
 \appendix
 \chapter{ТЗ}
-\label{sec:org307b1b7}
+\label{sec:orge14b396}
+text text
 \end{document}
