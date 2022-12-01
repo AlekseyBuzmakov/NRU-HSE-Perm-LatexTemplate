@@ -180,7 +180,6 @@
 }
 \DeclareVoidOption{VKR}{
   \def\@typeString{Выпускная квалификационная работа}
-  \HasReviewertrue
 }
 
 \DeclareDefaultOption{%
@@ -209,6 +208,7 @@
 \newcommand{\reviewer}[2]{
   \def\@reviewerTitle{#1}
   \def\@reviewerName{#2}
+  \HasReviewertrue
 }
 \newcommand{\Abstract}[1]{
   \def\@abstract{#1}
