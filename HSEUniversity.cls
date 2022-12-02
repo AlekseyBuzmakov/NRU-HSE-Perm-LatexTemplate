@@ -243,9 +243,9 @@
 \titlecontents{chapter}% <section-type>
   [0pt]% <left>
   {}% <above-code>
-  {\bfseries\chaptername\ \thecontentslabel\enskip}% <numbered-entry-format>
+  {\chaptername\ \thecontentslabel\enskip}% <numbered-entry-format>
   {}% <numberless-entry-format>
-  {\bfseries\dotfill\contentspage}% <filler-page-format>
+  {\dotfill\contentspage}% <filler-page-format>
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%
