@@ -435,7 +435,7 @@
 }
 
 % какие буквы можно юзать в TOC, тк буквы Ё, З, Й, О, Ч, Ъ, Ы, Ь не должны встречаться
-\def\cyrtoc#1{\ifcase #1\or а\or б\or в\or г\or д\or е\or ж\or и\or к\or л\or м\or н\or п\or р\or с\or т\or у\or ф\or х\or ц\or ш\or щ\or э\or ю\or я\else \@ctrerr \fi}
+\def\cyrtoc#1{\ifcase #1\or А\or Б\or В\or Г\or Д\or Е\or Ж\or И\or К\or Л\or М\or Н\or П\or Р\or С\or Т\or У\or Ф\or Х\or Ц\or Ш\or Щ\or Э\or Ю\or Я\else \@ctrerr \fi}
 
 \newcommand\originalappendix{}
 \let\originalappendix\appendix
@@ -443,13 +443,15 @@
   \originalappendix
   %\renewcommand{\thechapter}{\Asbuk{chapter}}
   \renewcommand{\thechapter}{\cyrtoc{\value{chapter}}}
+  \renewcommand{\appendixname}{ПРИЛОЖЕНИЕ} % Можно не менять и заменить на команду с \MakeUppercase в \renewcommand у меня локально не компилит, а в overleaf все нормально
   \titleformat{\chapter}
     {\Large\bfseries\centering}
     {\MakeUppercase{\chaptertitlename}\ \thechapter}{4pt}{}
 
   \addtocontents{toc}{\protect\value{tocdepth}=\chaptertocdepth}
   \renewcommand\addchaptertocentry[2]{%
-    \addtocentrydefault{chapter}{}{\MakeUppercase{\appendixname~##1} ##2}
+    \addtocentrydefault{chapter}{}{\appendixname~##1 ##2}
+    %\addtocentrydefault{chapter}{}{\MakeUppercase{\appendixname~##1} ##2}
   }
 }
 

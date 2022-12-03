@@ -12,6 +12,9 @@
 \RequirePackage{csquotes}
 \RequirePackage[russian]{babel}  % Языки: русский, английский
 
+\RequirePackage{listings}
+\RequirePackage{xcolor}
+
 \RequirePackage[font=small,skip=4pt]{caption}
 \RequirePackage{graphicx}
 
@@ -25,6 +28,7 @@
 \RequirePackage{titlesec}
 
 %%% Table of Contents %%%
+\RequirePackage[toc,titletoc,title]{appendix}
 \RequirePackage{tocloft}
 \RequirePackage{titletoc}
 
@@ -32,8 +36,107 @@
 \RequirePackage{amsfonts}
 \RequirePackage{amssymb}
 
+\RequirePackage{tabularx} % авто лайнбрейки при достижении лимита в таблице
+\RequirePackage{pdflscape} % горизонтал для приложений
+
+
 
 \RequirePackage[linktocpage=true,plainpages=false,pdfpagelabels=false]{hyperref}
+
+%%%%% Listing %%%%
+%New colors defined below
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{listingstyle}{
+  backgroundcolor=\color{backcolour},   commentstyle=\color{codegreen},
+  keywordstyle=\color{magenta},
+  numberstyle=\tiny\color{codegray},
+  stringstyle=\color{codepurple},
+  basicstyle=\ttfamily\footnotesize,
+  breakatwhitespace=false,         
+  breaklines=true,                 
+  captionpos=b,                    
+  keepspaces=true,                 
+  numbers=left,                    
+  numbersep=5pt,                  
+  showspaces=false,  
+  showstringspaces=false,
+  showtabs=false,                  
+  tabsize=2,
+      inputencoding=utf8,
+    extendedchars=true,
+    literate=
+    {а}{{\cyra}}1
+    {б}{{\cyrb}}1
+    {в}{{\cyrv}}1
+    {г}{{\cyrg}}1
+    {д}{{\cyrd}}1
+    {е}{{\cyre}}1
+    {ё}{\"{\cyre}}1
+    {ж}{{\cyrzh}}1
+    {з}{{\cyrz}}1
+    {и}{{\cyri}}1
+    {й}{{\cyrishrt}}1
+    {к}{{\cyrk}}1
+    {л}{{\cyrl}}1
+    {м}{{\cyrm}}1
+    {н}{{\cyrn}}1
+    {о}{{\cyro}}1
+    {п}{{\cyrp}}1
+    {р}{{\cyrr}}1
+    {с}{{\cyrs}}1
+    {т}{{\cyrt}}1
+    {у}{{\cyru}}1
+    {ф}{{\cyrf}}1
+    {х}{{\cyrh}}1
+    {ц}{{\cyrc}}1
+    {ч}{{\cyrch}}1
+    {ш}{{\cyrsh}}1
+    {щ}{{\cyrshch}}1
+    {ъ}{{\cyrhrdsn}}1
+    {ы}{{\cyrery}}1
+    {ь}{{\cyrsftsn}}1
+    {э}{{\cyrerev}}1
+    {ю}{{\cyryu}}1
+    {я}{{\cyrya}}1
+    {А}{{\CYRA}}1
+    {Б}{{\CYRB}}1
+    {В}{{\CYRV}}1
+    {Г}{{\CYRG}}1
+    {Д}{{\CYR96}}1
+    {Е}{{\CYRE}}1
+    {Ё}{{\"{\CYRE}}}1
+    {Ж}{{\CYRZH}}1
+    {З}{{\CYRZ}}1
+    {И}{{\CYRI}}1
+    {Й}{{\CYRISHRT}}1
+    {К}{{\CYRK}}1
+    {Л}{{\CYRL}}1
+    {М}{{\CYRM}}1
+    {Н}{{\CYRN}}1
+    {О}{{\CYRO}}1
+    {П}{{\CYRP}}1
+    {Р}{{\CYRR}}1
+    {С}{{\CYRS}}1
+    {Т}{{\CYRT}}1
+    {У}{{\CYRU}}1
+    {Ф}{{\CYRF}}1
+    {Х}{{\CYRH}}1
+    {Ц}{{\CYRC}}1
+    {Ч}{{\CYRCH}}1
+    {Ш}{{\CYRSH}}1
+    {Щ}{{\CYRSHCH}}1
+    {Ъ}{{\CYRHRDSN}}1
+    {Ы}{{\CYRERY}}1
+    {Ь}{{\CYRSFTSN}}1
+    {Э}{{\CYREREV}}1
+    {Ю}{{\CYRYU}}1
+    {Я}{{\CYRYA}}1
+}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Библиография %%%
@@ -53,7 +156,6 @@
 ]{biblatex}
 \renewcommand*{\multicitedelim}{\addcomma\space}
 
-%\usepackage{cite} % Красивые ссылки на литературу
 % Настройки языка в списке литературы.
 \DeclareSourcemap{
   \maps[datatype=bibtex,overwrite=false]{
@@ -67,9 +169,6 @@
       \step[fieldsource=language]
       \step[fieldset=hyphenation,origfieldval]
     }
-% \map{
-%   \step[fieldset=hyphenation,fieldvalue={english}]
-% }
   }
 }
 %%%%%%%%%%%%%%%%%%%%%%
@@ -80,7 +179,6 @@
 \newcommand{\putbibliography}{
   \chapter**{Библиографический список}
   \addcontentsline{toc}{chapter}{Библиографический список}
-
   \printbibliography[heading=none] %title={Библиографический список}, env=gostbibliography,
 }
 
@@ -124,14 +222,16 @@
 \RequirePackage{enumitem}
 \setlist{leftmargin=15mm}
 \setlist{nosep}
+
+
 %%% Оглавление %%%
 \renewcommand{\cftchapdotsep}{\cftdotsep}
 \let\@originalchapter\chapter
 \def\chapter{
   \@ifstar\chapterstar\@originalchapter
-}
+ }
 \def\chapterstar{
-  \@ifstar\chapter@nonum@notoc\chapter@nonum
+   \@ifstar\chapter@nonum@notoc\chapter@nonum
 }
 \newcommand\chapter@nonum@notoc[2][]{
    \@originalchapter*{#2}
@@ -143,9 +243,11 @@
 \titlecontents{chapter}% <section-type>
   [0pt]% <left>
   {}% <above-code>
-  {\bfseries\chaptername\ \thecontentslabel\enskip}% <numbered-entry-format>
+  {\chaptername\ \thecontentslabel\enskip}% <numbered-entry-format>
   {}% <numberless-entry-format>
-  {\bfseries\dotfill\contentspage}% <filler-page-format>
+  {\dotfill\contentspage}% <filler-page-format>
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%
 % Обработка опций пакета
 
@@ -166,13 +268,13 @@
 \DeclareVoidOption{PI}{
   \def\@facultyString{Факультет социально-экономических и компьютерных науки}
   \def\@specName{Программная инженерия}
-  \def\@specCode{09.03.04 Программная инженерия}
+  \def\@specCode{09.03.04 Программная инженерия}
 }
 % BI -- Бизнес информатика
 \DeclareVoidOption{BI}{
   \def\@facultyString{Факультет социально-экономических и компьютерных науки}
   \def\@specName{Бизнес информатика}
-  \def\@specCode{09.03.04 Программная инженерия}
+  \def\@specCode{09.03.04 Программная инженерия}
 }
 % Available options for the type
 \DeclareVoidOption{KR}{
@@ -193,7 +295,7 @@
 }
 \ProcessKeyvalOptions*
 
-\def\@year{1900}
+\def\@year{\the\year{}}
 \def\@supervisorTitle{}
 \def\@supervisorName{I.I.~Ivanov}
 \def\@reviewerTitle{}
@@ -247,7 +349,7 @@
   \vfill
 
   студента образовательной программы <<\@specName>> \\
-  по направлению подготовки {\underline{\@specCode}}
+  по направлению подготовки \underline{\@specCode}
 
   \vfill
   \vfill
@@ -297,6 +399,7 @@
 
 }
 
+
 \newsavebox{\TABLEbox}
 \newenvironment{TABLE}[2][t]
 {
@@ -330,18 +433,28 @@
   \caption{\@figureCaption}
   \end{figure}
 }
+
+% какие буквы можно юзать в TOC, тк буквы Ё, З, Й, О, Ч, Ъ, Ы, Ь не должны встречаться
+\def\cyrtoc#1{\ifcase #1\or А\or Б\or В\or Г\or Д\or Е\or Ж\or И\or К\or Л\or М\or Н\or П\or Р\or С\or Т\or У\or Ф\or Х\or Ц\or Ш\or Щ\or Э\or Ю\or Я\else \@ctrerr \fi}
+
 \newcommand\originalappendix{}
 \let\originalappendix\appendix
 \renewcommand{\appendix}{%
   \originalappendix
-  \renewcommand{\thechapter}{\Asbuk{chapter}}
-  \titleformat{\chapter}%[display] % капсом и без точки
+  %\renewcommand{\thechapter}{\Asbuk{chapter}}
+  \renewcommand{\thechapter}{\cyrtoc{\value{chapter}}}
+  \renewcommand{\appendixname}{ПРИЛОЖЕНИЕ} % Можно не менять и заменить на команду с \MakeUppercase в \renewcommand у меня локально не компилит, а в overleaf все нормально
+  \titleformat{\chapter}
     {\Large\bfseries\centering}
     {\MakeUppercase{\chaptertitlename}\ \thechapter}{4pt}{}
-  \addtocontents{toc}{\bfseries\protect\value{tocdepth}=\chaptertocdepth}% appendix sections etc. not shown in ToC
+
+  \addtocontents{toc}{\protect\value{tocdepth}=\chaptertocdepth}
   \renewcommand\addchaptertocentry[2]{%
-    \addtocentrydefault{chapter}{}{\MakeUppercase{\appendixname~##1} ##2}% добавить  чтобы добавить имя приложения
-  }% appendix titles not shown in ToC
+    \addtocentrydefault{chapter}{}{\appendixname~##1 ##2}
+    %\addtocentrydefault{chapter}{}{\MakeUppercase{\appendixname~##1} ##2}
+  }
 }
+
+
 \newcommand{\reftable}[1]{см. таблицу ~\ref{#1}}
 \newcommand{\reffig}[1]{Рисунок ~\ref{#1}}
