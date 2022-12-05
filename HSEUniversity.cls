@@ -248,6 +248,92 @@
   {\dotfill\contentspage}% <filler-page-format>
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%% Таблица на несколько страниц %%%%%%
+% author @makspepe
+\RequirePackage{tabularray} % собственно лонгтейбл, но из пака tabulararray (https://ctan.math.illinois.edu/macros/latex/contrib/tabularray/tabularray.pdf)
+\RequirePackage{xcolor} % чтобы можно было красить таблицы
+
+\ExplSyntaxOn
+% выравнивание подписи таблицы по правому краю
+\DefTblrTemplate{caption}{normal}
+  {
+    \hbox_set:Nn \l__tblr_caption_box
+      {
+        \UseTblrTemplate{caption-tag}{default}
+        \UseTblrTemplate{caption-sep}{custom}{~}{--}{~} % ~ как замена space в expl syntax
+        \UseTblrTemplate{caption-text}{default}
+      }
+    \dim_compare:nNnTF { \box_wd:N \l__tblr_caption_box } > { \hsize }
+      {
+        \UseTblrAlign{caption}
+        \UseTblrIndent{caption}
+        \hbox_set:Nn \l__tblr_caption_left_box
+          {
+            \UseTblrTemplate{caption-tag}{default}
+            \UseTblrTemplate{caption-sep}{custom}{~}{--}{~}
+          }
+        \hangindent = \box_wd:N \l__tblr_caption_left_box
+        \hangafter = 1
+        \UseTblrHang{caption}
+        \leavevmode
+        \hbox_unpack:N \l__tblr_caption_box
+        \par
+      }
+      {
+        \centering
+        \makebox[\hsize][r]{
+          \box_use:N \l__tblr_caption_box
+        } % смени r на l, c, или j чтобы не по правому
+        \par
+      }
+  }
+
+% выравнивание продолжения подписи таблицы по правому
+\DefTblrTemplate { capcont } { normal }
+  {
+    \hbox_set:Nn \l__tblr_caption_box
+      {
+        \UseTblrTemplate { caption-tag } { default }
+        \UseTblrTemplate { caption-sep } { custom } {~} {--} {~}
+        \UseTblrTemplate { caption-text } { default }
+        \space
+        \UseTblrTemplate { conthead-text } { default }
+      }
+    \dim_compare:nNnTF { \box_wd:N \l__tblr_caption_box } > { \hsize }
+      {
+        \UseTblrAlign { capcont }
+        \UseTblrIndent { capcont }
+        \hbox_set:Nn \l__tblr_caption_left_box
+          {
+            \UseTblrTemplate { caption-tag } { default }
+            \UseTblrTemplate { caption-sep } { custom } {~} {--} {~}
+          }
+        \hangindent = \box_wd:N \l__tblr_caption_left_box
+        \hangafter = 1
+        \UseTblrHang { capcont }
+        \leavevmode
+        \hbox_unpack:N \l__tblr_caption_box
+        \par
+      }
+      {
+        \centering
+        \makebox [\hsize] [r] { \box_use:N \l__tblr_caption_box } % смени r на l, c, или j чтобы не по правому
+        \par
+      }
+  }
+\ExplSyntaxOff
+
+\SetTblrTemplate{caption}{normal} % применяем изменения
+\SetTblrTemplate{capcont}{normal}
+
+% подписи на русском
+\DefTblrTemplate{conthead-text}{fancy}{(Продолжение)}
+    \SetTblrTemplate{conthead-text}{fancy}
+
+\DefTblrTemplate{contfoot-text}{fancy}{Продолжение на следующей странице}
+    \SetTblrTemplate{contfoot-text}{fancy}
+
 %%%%%%%%%%%%%%%%%%%%%%%%
 % Обработка опций пакета
 

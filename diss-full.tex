@@ -153,6 +153,43 @@
 	\end{tabular}
 \end{TABLE}
 
+
+Пример таблицы на несколько страниц.
+\begin{longtblr}
+[
+%theme=longtable1,
+caption={This is a long table that uses the ``longtblr'' theme to align the table's caption to the left},
+%label = {tab:test},
+]{
+colspec = {|X|X|X|X|X|X|},
+rowhead = 1,
+hlines,
+%row{even} = {gray9},
+%row{1} = {olive9},
+}
+Head1 & Head2 & Head3 & Head4 & Head5 & Head6 \\
+Управление интеграцией проекта & Разработка устава проекта & Разработка плана управления проектом
+& Руководство и управление работами проекта; \par Управление знаниями проекта
+& Мониторинг и контроль работ проекта; \par Интегрированный контроль изменений
+& Закрытие проекта или фазы \\
+foo & bar \\
+foo & bar \\
+foo & bar \\
+foo & bar \\
+foo & bar \\
+foo & bar \\
+foo & bar \\
+foo & bar \\
+foo & bar \\
+foo & bar \\
+foo & bar \\
+foo & bar \\
+foo & bar \\
+foo & bar \\
+foo & bar \\
+foo & bar \\
+\end{longtblr}
+
 \section{Оформление формул}
 
 Для оформления формул используются стандартные средства \LaTeX{}. Примеры <<inline>> (внутри-строчных формул): $A^i_k$, $A_k^i$, $1+2+\cdots+n$, $x_1, x_2, \dots, x_n$.
