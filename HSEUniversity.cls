@@ -17,6 +17,7 @@
 
 \RequirePackage[font=small,skip=4pt]{caption}
 \RequirePackage{graphicx}
+\RequirePackage{hyphenat} % чтобы не было переноса
 
 %\usepackage{pscyr}    % Красивые русские шрифты
 %\renewcommand{\rmdefault}{ftm} % Включаем Times New Roman
@@ -464,7 +465,7 @@
   \ifHasReviewer
   \begin{minipage}[t]{0.4\textwidth}
     Рецензент \\
-    \@reviewerTitle
+    \nohyphens{\@reviewerTitle}
 
     \vspace{2mm}
 
@@ -474,7 +475,7 @@
   \hfill
   \begin{minipage}[t]{0.4\textwidth}
     Руководитель \\
-    \@supervisorTitle
+    \nohyphens{\@supervisorTitle}
 
     \vspace{10mm}
 
