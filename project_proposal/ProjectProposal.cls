@@ -81,7 +81,6 @@
 % \bibliographystyle{apacite}
 \newcommand{\putbibliography}{
   \chapter*{Reference}
-  \addcontentsline{toc}{chapter}{Reference}
 
   \printbibliography[heading=none] %title={Библиографический список}, env=gostbibliography,
 }
