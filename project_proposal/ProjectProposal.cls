@@ -241,7 +241,7 @@
 
   \hfill
   \begin{minipage}[t]{0.4\textwidth}
-    \textbf{Supervisor} \text{\@supervisorTitle} \text{\@supervisorName}
+    \textbf{Supervisor} \@supervisorTitle \@supervisorName
   \end{minipage}
 
   \vfill
