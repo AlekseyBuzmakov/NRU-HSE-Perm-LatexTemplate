@@ -210,22 +210,22 @@
   \centering
 
   \textbf{NATIONAL RESEARCH UNIVERSITY HIGHER SCHOOL OF ECONOMICS}
-
   \vfill
-
-  \textbf{\@facultyString}
-
-  \vfill
-  \vfill
-  \vfill
-
+  \textbf{\MakeUppercase{\@facultyString}}
+  \textbf{\MakeUppercase{\@specName}}
 
   \vfill
   \vfill
+  \vfill
 
-  \textbf{\@title}
+
+  \vfill
+  \vfill
 
   {\bfseries PROJECT PROPOSAL}
+  \vfill
+  \textbf{\MakeUppercase{\@title}}
+
 
   \vfill
 
@@ -236,30 +236,33 @@
 
   \hfill
   \begin{minipage}[t]{0.4\textwidth}
-    \text{\@author}  \@groupTitle
+    \begin{flushright}
+      \text{\@author},  \@groupTitle
+    \end{flushright}
   \end{minipage}
 
   \hfill
   \begin{minipage}[t]{0.4\textwidth}
-    \textbf{Supervisor} \@supervisorTitle \@supervisorName
+    \begin{flushright}
+      \textbf{Supervisor} \@supervisorTitle, \@supervisorName
+    \end{flushright}
   \end{minipage}
-
   \vfill
   \vfill
   \vfill
 
-  Perm
+  \MakeUppercase{\textbf{Perm}}
 
-  \@year{}
+  \textbf{\@year{}}
 
   \newpage
 }
 
-\chapter**{TOC}
+  \chapter**{TOC}
 
-\@starttoc{toc}
+  \@starttoc{toc}
 
-\newpage
+  \newpage
 
 }
 
