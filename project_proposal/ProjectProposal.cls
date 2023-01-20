@@ -188,19 +188,18 @@
 }
 \ProcessKeyvalOptions*
 
-\def\@year{1900}
+\def\@year{\the\year{}}
 \def\@supervisorTitle{}
+\def\@supervisorAcademic{}
 \def\@supervisorName{I.I.~Ivanov}
 \def\@groupTitle{UNKNOWN GROUP}
-% \def\@reviewerTitle{}
-% \def\@reviewerName{I.I.~Ivanov}
-% \def\@abstract{TODO}
 
 \newcommand{\Group}[1]{\def\@groupTitle{#1}}
 \newcommand{\Year}[1]{\def\@year{#1}}
-\newcommand{\supervisor}[2]{
+\newcommand{\supervisor}[3]{
   \def\@supervisorTitle{#1}
-  \def\@supervisorName{#2}
+  \def\@supervisorAcademic{#2}
+  \def\@supervisorName{#3}
 }
 
 \renewcommand{\maketitle}{
@@ -244,7 +243,7 @@
   \hfill
   \begin{minipage}[t]{0.4\textwidth}
     \begin{flushright}
-      \textbf{Supervisor} \@supervisorTitle, \@supervisorName
+      \textbf{Supervisor} \@supervisorTitle, \@supervisorAcademic, \@supervisorName
     \end{flushright}
   \end{minipage}
   \vfill

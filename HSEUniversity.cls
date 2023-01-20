@@ -404,15 +404,17 @@
 
 \def\@year{\the\year{}}
 \def\@supervisorTitle{}
+\def\@supervisorAcademic{}
 \def\@supervisorName{I.I.~Ivanov}
 \def\@reviewerTitle{}
 \def\@reviewerName{I.I.~Ivanov}
 \def\@abstract{TODO}
 
 \newcommand{\Year}[1]{\def\@year{#1}}
-\newcommand{\supervisor}[2]{
+\newcommand{\supervisor}[3]{
   \def\@supervisorTitle{#1}
-  \def\@supervisorName{#2}
+  \def\@supervisorAcademic{#2}
+  \def\@supervisorName{#3}
 }
 \newcommand{\reviewer}[2]{
   \def\@reviewerTitle{#1}
@@ -475,7 +477,7 @@
   \hfill
   \begin{minipage}[t]{0.4\textwidth}
     Руководитель \\
-    \nohyphens{\@supervisorTitle}
+    \nohyphens{\@supervisorTitle}, \nohyphens{\@supervisorAcademic}
 
     \vspace{10mm}
 
