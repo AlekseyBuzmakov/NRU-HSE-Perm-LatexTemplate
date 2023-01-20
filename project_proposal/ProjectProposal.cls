@@ -16,8 +16,6 @@
 \RequirePackage[font=small,skip=4pt]{caption}
 \RequirePackage{graphicx}
 
-%\usepackage{pscyr}    % Красивые русские шрифты
-%\renewcommand{\rmdefault}{ftm} % Включаем Times New Roman
 
 %%% Оформление абзацев %%%
 \RequirePackage{indentfirst} % Красная строка
@@ -55,8 +53,6 @@
 ]{biblatex}
 \renewcommand*{\multicitedelim}{\addcomma\space}
 
-%\usepackage{cite} % Красивые ссылки на литературу
-% Настройки языка в списке литературы.
 \DeclareSourcemap{
   \maps[datatype=bibtex,overwrite=false]{
     \map{
@@ -80,8 +76,7 @@
 \NewBibliographyString{fromjapanese}
 % \bibliographystyle{apacite}
 \newcommand{\putbibliography}{
-  \chapter*{Reference}
-
+  \chapter*{References}
   \printbibliography[heading=none] %title={Библиографический список}, env=gostbibliography,
 }
 
@@ -100,24 +95,28 @@
 \captionsetup[figure]{labelfont={bf, it}, textfont={bf, it}, position=b, singlelinecheck=false, labelsep=endash, justification=centering, name=Рисунок}
 
 %%% Главы и разделы %%%
+\RequirePackage{titlecaps}
+% https://capitalizemytitle.com/#capitalizationrules
+\Addlcwords{at off by on down onto for over from in to into upon near with of a an the and so as than but that for if nor yet or }
 \RequirePackage{titlesec}
 \titleclass{\chapter}{straight}
 \titleformat{\chapter}%[display]
-  {\bfseries\centering}
-  {}{}{}
+  {\large\bfseries\centering}
+  {}{}{\titlecap}
 \titlespacing*{\chapter}{1pt}{1pt}{1pt}
 \titleformat{\section}
-  {\bfseries\centering}
-  {}{3pt}{}
+  {\large\bfseries\raggedright}
+  {}{3pt}{\titlecap}
 \titlespacing*{\section}{0pt}{8pt}{4pt}
 \titleformat{\subsection}
-  {\bfseries\centering}
+  {\bfseries}
   {}{3pt}{}
 \titlespacing*{\subsection}{0pt}{8pt}{4pt}
 \titleformat{\subsubsection}
   {\centering}
   {}{3pt}{}
 \titlespacing*{\subsubsection}{0pt}{8pt}{4pt}
+
 \RequirePackage{titletoc}
 \titlecontents{chapter}[1em]{}
 {\thecontentslabel\enspace}
@@ -203,7 +202,7 @@
 }
 
 \renewcommand{\maketitle}{
-
+{
   \thispagestyle{empty}
 
   \centering
@@ -243,7 +242,7 @@
   \hfill
   \begin{minipage}[t]{0.4\textwidth}
     \begin{flushright}
-      \textbf{Supervisor} \@supervisorTitle, \@supervisorAcademic, \@supervisorName
+      \textbf{Supervisor:} \@supervisorTitle, \@supervisorAcademic, \@supervisorName
     \end{flushright}
   \end{minipage}
   \vfill
@@ -255,7 +254,7 @@
   \textbf{\@year{}}
 
   \newpage
-
+}
 }
 
 \newsavebox{\TABLEbox}
@@ -291,7 +290,3 @@
   \caption{\@figureCaption}
   \end{figure}
 }
-
-\newcommand{\appendixsection}[1]{\section{#1}\addcontentsline{toc}{section}{Приложение \thesection. \currentname}} % не уверен что работает
-\newcommand{\reftable}[1]{см. таблицу ~\ref{#1}}
-\newcommand{\reffig}[1]{Рисунок ~\ref{#1}}
