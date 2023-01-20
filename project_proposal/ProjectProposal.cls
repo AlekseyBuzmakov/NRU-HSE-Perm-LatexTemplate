@@ -203,7 +203,7 @@
 }
 
 \renewcommand{\maketitle}{
-{
+
   \thispagestyle{empty}
 
   \centering
@@ -253,13 +253,6 @@
   \MakeUppercase{\textbf{Perm}}
 
   \textbf{\@year{}}
-
-  \newpage
-}
-
-  \chapter**{TOC}
-
-  \@starttoc{toc}
 
   \newpage
 
