@@ -10,7 +10,7 @@
 \RequirePackage[T2A]{fontenc}    % Поддержка русских букв
 \RequirePackage[utf8]{inputenc}  % Кодировка utf8
 \RequirePackage{csquotes}
-\RequirePackage[russian]{babel}  % Языки: русский, английский
+\RequirePackage[main=english, russian]{babel}  % Языки: русский, английский
 
 
 \RequirePackage[font=small,skip=4pt]{caption}
@@ -41,9 +41,11 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \RequirePackage[
   style=apa,
-  language=russian,
+  language=english,    % get main language from babel
+  autolang=other,
   babel=other,
   backend=biber,
+  bibencoding=UTF8,
   sorting=anyvt, % sorts entries by alphabetic label, name, year, volume, title;
   url=false,
   doi=false,
