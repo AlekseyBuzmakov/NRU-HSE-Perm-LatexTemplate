@@ -144,7 +144,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \RequirePackage[
   style=gost-numeric-min,
-  language=russian,
+  language=auto,
   babel=other,
   backend=biber,
   defernumbers=true,% Нумерация начинается как только встречается группа.
