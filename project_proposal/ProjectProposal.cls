@@ -51,7 +51,10 @@
   doi=false,
   isbn=false,
   %movenames=false,
-  maxnames=100
+  maxnames=3,
+  maxcitenames=3,
+  mincitenames=1,
+  maxbibnames=3,
 ]{biblatex}
 \renewcommand*{\multicitedelim}{\addcomma\space}
 
