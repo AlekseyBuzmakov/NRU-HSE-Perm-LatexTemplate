@@ -1,7 +1,7 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{ProjectProposal}[2022-11-13 Template for project proposal]
 %\LoadClass[a4paper]{extreport}
-\LoadClass[fontsize=13bp]{scrreprt} % Times New Roman 13 size
+\LoadClass[fontsize=14bp]{scrreprt} % Times New Roman 14 size
 \RequirePackage{ifpdf}
 \RequirePackage{kvoptions}
 \RequirePackage[a4paper,left=25mm,right=25mm,top=25mm,bottom=25mm,footskip=25mm]{geometry}
@@ -68,7 +68,7 @@
   {}{}{\titlecap}
 \titlespacing*{\chapter}{1pt}{1pt}{1pt}
 \titleformat{\section}
-  {\large\bfseries\raggedright}
+  {\large\bfseries\itshape\raggedright}
   {}{3pt}{\titlecap}
 \titlespacing*{\section}{0pt}{8pt}{4pt}
 \titleformat{\subsection}
