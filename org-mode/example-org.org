@@ -89,7 +89,18 @@ $n$ -- число лет с момента покупки до момента п
 
 Список литературы вставляется специальной командой =\putbibliography=, далее $\LaTeX{}$ берёт на себя оформление списка литературы.
 
+Для вывода полного списка литератры, как nocite использовать =[cite\n:@*]=. [[https://blog.tecosaur.com/tmio/2021-07-31-citations.html#basic-usage][Полный гайд по цитированию.]]
+[[https://orgmode.org/org.html#Bibliography-options-in-the-_0060_0060biblatex_0027_0027-and-_0060_0060csl_0027_0027-export-processors][Экспорт по секциям]]
+
 #+LATEX: \putbibliography
 #+LATEX: \appendix
+* Org-mode пакеты
+- doom-emacs
+- org-fragtode
+- org-ref
+- cite =SPC m @= -> cite =SPC m @=
+- reverse-im
+* TODO добавить
+Как цитировать, как экспортировать, настройка конфига, img preview, diagramms (mermaid, plantuml, d2) support.
 * ТЗ
 text text
