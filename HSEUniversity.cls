@@ -177,6 +177,8 @@
 \NewBibliographyString{langjapanese}
 \NewBibliographyString{fromjapanese}
 
+% TODO change to printbibliography and \renewcommand{\bibname}{Whatever floats your boat} \renewcommand{\bibsection}{\section{\bibname}}
+% \printbibliography[title={Articles},type=article,sorting=nyt,heading=subbibnumbered]
 \newcommand{\putbibliography}{
   \chapter**{Библиографический список}
   \addcontentsline{toc}{chapter}{Библиографический список}
@@ -373,13 +375,13 @@
 % Available options for the specialiazation
 % PI -- Software Engeneers
 \DeclareVoidOption{PI}{
-  \def\@facultyString{Факультет социально-экономических и компьютерных науки}
+  \def\@facultyString{Факультет социально-экономических и компьютерных наук}
   \def\@specName{Программная инженерия}
   \def\@specCode{09.03.04 Программная инженерия}
 }
 % BI -- Бизнес информатика
 \DeclareVoidOption{BI}{
-  \def\@facultyString{Факультет социально-экономических и компьютерных науки}
+  \def\@facultyString{Факультет социально-экономических и компьютерных наук}
   \def\@specName{Бизнес информатика}
   \def\@specCode{09.03.04 Программная инженерия}
 }
@@ -465,26 +467,30 @@
   \vfill
 
   \ifHasReviewer
-  \begin{minipage}[t]{0.4\textwidth}
-    Рецензент \\
-    \nohyphens{\@reviewerTitle}
+    \begin{minipage}[t]{0.4\textwidth}
+      \begin{flushleft}
+        Рецензент \\
+        \nohyphens{\@reviewerTitle}
 
-    \vspace{2mm}
+        \vspace{2mm}
 
-    \@reviewerName
-  \end{minipage}
+        \@reviewerName
+      \end{flushleft}
+    \end{minipage}
   \fi
   \hfill
   \begin{minipage}[t]{0.4\textwidth}
-    Руководитель \\
-    \nohyphens{\@supervisorTitle}, \nohyphens{\@supervisorAcademic}
+    \begin{flushleft}
+      Руководитель \\
+      \nohyphens{\@supervisorTitle}, \nohyphens{\@supervisorAcademic}
 
-    \vspace{10mm}
+      \vspace{10mm}
 
-    \hrule
-    \vspace{3mm}
+      \hrule
+      \vspace{3mm}
 
-    \@supervisorName
+      \@supervisorName
+    \end{flushleft}
   \end{minipage}
 
   \vfill
