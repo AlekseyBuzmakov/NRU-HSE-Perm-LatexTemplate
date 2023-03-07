@@ -154,9 +154,14 @@
   isbn=false,
   movenames=false,
   maxnames=100
-]{biblatex}
-\renewcommand*{\multicitedelim}{\addcomma\space}
+  ]{biblatex}
 
+%%%%%%%% для форматирования под гост 2011
+\renewcommand*{\multicitedelim}{\addcomma\space}
+\ltx@iffilelater{biblatex-gost.def}{2017/05/03}%
+{\toggletrue{bbx:gostbibliography}%
+
+\renewcommand*{\revsdnamepunct}{\addcomma}}{}
 % Настройки языка в списке литературы.
 \DeclareSourcemap{
   \maps[datatype=bibtex,overwrite=false]{
