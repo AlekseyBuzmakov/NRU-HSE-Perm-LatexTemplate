@@ -23,10 +23,9 @@ A LaTeX template for bachelor and master thesis at HSE University (Perm)
 Для автоматического подсчета количества таблиц и иллюстраций указать:
 
 ``` tex
-  Количество страниц -- \pageref*{pg:end}, количество иллюстраций -- \TotalValue{totalfigures}, количетсво таблиц -- \TotalValue{totaltables}.
+Количество страниц -- \pageref*{pg:end}, количество иллюстраций -- \TotalValue{totalfigures}, количетсво таблиц -- \TotalValue{totaltables}.
 ```
 
-`
 ## Известные проблемы
 Сейчас при компиляции шаблона КР/ВКР компилятор будет выдавать ошибки. На них можно не обращать внимание, тк pdf все равно будет выдаваться правильный. Данные ошибки происходят из-за хаков на long table.
 
