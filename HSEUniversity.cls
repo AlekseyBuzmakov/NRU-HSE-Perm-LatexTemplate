@@ -194,10 +194,12 @@
 
 %%% Счётчики
 \RequirePackage{xassoccnt}
+% счетчик иллюстраций
 \NewTotalDocumentCounter{totalfigures}
 \DeclareAssociatedCounters{figure}{totalfigures}
 \DeclareAssociatedCounters{FIGURE}{totalfigures}
 
+% счетчик таблиц
 \NewTotalDocumentCounter{totaltables}
 \DeclareAssociatedCounters{table}{totaltables}
 \DeclareAssociatedCounters{TABLE}{totaltables}
@@ -572,7 +574,7 @@
 \newcommand\originalappendix{}
 \let\originalappendix\appendix
 \renewcommand{\appendix}{%
-  \label{pg:end}
+  \label{pg:end} % для указания на номер последней страницы
   \originalappendix
   %\renewcommand{\thechapter}{\Asbuk{chapter}}
   \renewcommand{\thechapter}{\cyrtoc{\value{chapter}}}
