@@ -157,6 +157,7 @@
   ]{biblatex}
 
 %%%%%%%% для форматирования под гост 2011
+%%% https://github.com/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template/blob/dbd175fb59fe5d1d29df3048ce4aded671fb7db9/Readme/Bibliography.md#%D1%81%D1%82%D1%80%D0%BE%D0%B3%D0%BE%D1%81%D1%82%D1%8C-%D1%81%D0%BE%D0%BE%D1%82%D0%B2%D0%B5%D1%82%D1%81%D1%82%D0%B2%D0%B8%D1%8F-%D0%B3%D0%BE%D1%81%D1%82
 \renewcommand*{\multicitedelim}{\addcomma\space}
 \ltx@iffilelater{biblatex-gost.def}{2017/05/03}%
 {\toggletrue{bbx:gostbibliography}%
@@ -190,6 +191,17 @@
   \printbibliography[heading=none] %title={Библиографический список}, env=gostbibliography,
 }
 
+
+%%% Счётчики
+\RequirePackage{xassoccnt}
+\NewTotalDocumentCounter{totalfigures}
+\DeclareAssociatedCounters{figure}{totalfigures}
+\DeclareAssociatedCounters{FIGURE}{totalfigures}
+
+\NewTotalDocumentCounter{totaltables}
+\DeclareAssociatedCounters{table}{totaltables}
+\DeclareAssociatedCounters{TABLE}{totaltables}
+\DeclareAssociatedCounters{longtblr}{totaltables}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Установка основных характеристик текста
 
@@ -560,6 +572,7 @@
 \newcommand\originalappendix{}
 \let\originalappendix\appendix
 \renewcommand{\appendix}{%
+  \label{pg:end}
   \originalappendix
   %\renewcommand{\thechapter}{\Asbuk{chapter}}
   \renewcommand{\thechapter}{\cyrtoc{\value{chapter}}}
