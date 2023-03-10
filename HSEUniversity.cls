@@ -10,7 +10,7 @@
 \RequirePackage[T2A]{fontenc}    % Поддержка русских букв
 \RequirePackage[utf8]{inputenc}  % Кодировка utf8
 \RequirePackage{csquotes}
-\RequirePackage[russian]{babel}  % Языки: русский, английский
+\RequirePackage[main=russian,english]{babel}  % Языки: русский, английский
 
 \RequirePackage{listings}
 \RequirePackage{xcolor}
@@ -145,7 +145,6 @@
 \RequirePackage[
   style=gost-numeric-min,
   language=auto,
-  babel=other,
   backend=biber,
   defernumbers=true,% Нумерация начинается как только встречается группа.
   sorting=none,
@@ -153,7 +152,12 @@
   doi=false,
   isbn=false,
   movenames=false,
-  maxnames=100
+  bibencoding=utf8,% кодировка bib файла
+  language=autobib,% получение языка из babel/polyglossia, default: autobib % если ставить autocite или auto, то цитаты в тексте с указанием страницы, получат указание страницы на языке оригинала
+  autolang=other,% многоязычная библиография
+  clearlang=true,% внутренний сброс поля language, если он совпадает с языком из babel/polyglossia
+  %defernumbers=true,% нумерация проставляется после двух компиляций, зато позволяет выцеплять библиографию по ключевым словам и нумеровать не из большего списка
+  sortcites=true,% сортировать номера затекстовых ссылок при цитировании (если в квадратных скобках несколько ссылок, то отображаться будут отсортированно, а не абы как)
   ]{biblatex}
 
 %%%%%%%% для форматирования под гост 2011
@@ -214,6 +218,7 @@
 \linespread{1.5} % Полуторный интервал
 \setlength{\parindent}{12.5mm} % Отступ красной строки
 
+\RequirePackage{float}
 % Попись таблицы и рисунка
 \captionsetup[table]{position=t, singlelinecheck=false, justification=raggedleft, labelsep=endash, name=Таблица}
 \captionsetup[figure]{labelfont={bf, it}, textfont={bf, it}, position=b, singlelinecheck=false, labelsep=endash, justification=centering, name=Рисунок}
