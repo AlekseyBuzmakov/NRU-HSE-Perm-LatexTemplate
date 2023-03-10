@@ -285,7 +285,7 @@
   \hbox_set:Nn \l__tblr_caption_box
   {
     \UseTblrTemplate { caption-tag } { default }
-    \UseTblrTemplate { caption-sep } { custom } {~} {--} {~} % ~ как замена space в expl syntax
+    \UseTblrTemplate { caption-sep }  { empty } {~--~} % ~ как замена space в expl syntax
     \UseTblrTemplate { caption-text } { default }
   }
   \dim_compare:nNnTF { \box_wd:N \l__tblr_caption_box } > { \hsize }
@@ -295,7 +295,7 @@
     \hbox_set:Nn \l__tblr_caption_left_box
     {
       \UseTblrTemplate { caption-tag } { default }
-      \UseTblrTemplate { caption-sep } { custom } {~} {--} {~}
+      \UseTblrTemplate { caption-sep } { empty } {~--~}
     }
     \hangindent = \box_wd:N \l__tblr_caption_left_box
     \hangafter = 1
@@ -317,7 +317,7 @@
   \hbox_set:Nn \l__tblr_caption_box
   {
     \UseTblrTemplate { caption-tag } { default }
-    \UseTblrTemplate { caption-sep } { custom } {~} {--} {~}
+    \UseTblrTemplate { caption-sep } { empty } {~--~}
     \UseTblrTemplate { caption-text } { default }
     \space
     \UseTblrTemplate { conthead-text } { default }
@@ -329,7 +329,7 @@
     \hbox_set:Nn \l__tblr_caption_left_box
     {
       \UseTblrTemplate { caption-tag } { default }
-      \UseTblrTemplate { caption-sep } { custom } {~} {--} {~}
+      \UseTblrTemplate { caption-sep } { empty } {~--~}
     }
     \hangindent = \box_wd:N \l__tblr_caption_left_box
     \hangafter = 1
