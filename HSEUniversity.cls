@@ -222,6 +222,7 @@
 % Попись таблицы и рисунка
 \captionsetup[table]{position=t, singlelinecheck=false, justification=raggedleft, labelsep=endash, name=Таблица}
 \captionsetup[figure]{labelfont={bf, it}, textfont={bf, it}, position=b, singlelinecheck=false, labelsep=endash, justification=centering, name=Рисунок}
+\RequirePackage{rotating} % Переворачивание таблиц и картинок
 
 %%% Главы и разделы %%%
 \titleformat{\chapter}%[display]
