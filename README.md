@@ -30,6 +30,7 @@ A LaTeX template for bachelor and master thesis at HSE University (Perm)
 ### Длинный заголовок
 Если будет длинный заголовок, как:
 ![](img/problem_heading.png)
+
 то можно делать `chapter*`:
 ``` tex
 \chapter*{ПРИЛОЖЕНИЕ А Техническое задание на разрабатываемую систему}
