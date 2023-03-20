@@ -249,7 +249,7 @@
 \renewcommand\labelitemiv{--}
 \RequirePackage{enumitem}
 \setlist[enumerate]{label={\arabic*.}, ref={\arabic*}} % все уровни нумерованого списка арабские цифры
-\setlist{leftmargin=15mm}
+\setlist{leftmargin=20mm}
 \setlist{nosep}
 
 
