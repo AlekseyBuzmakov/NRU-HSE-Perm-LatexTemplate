@@ -248,9 +248,8 @@
 \renewcommand\labelitemiii{--}
 \renewcommand\labelitemiv{--}
 \RequirePackage{enumitem}
-\setlist[enumerate]{label={\arabic*.}, ref={\arabic*}} % все уровни нумерованого списка арабские цифры
-\setlist{leftmargin=20mm}
-\setlist{nosep}
+\setlist[enumerate]{label={\arabic*.}, ref={\arabic*}, leftmargin={20mm}, nosep} % все уровни нумерованного списка арабские цифры
+\setlist[itemize]{leftmargin={20mm}, nosep}
 
 
 %%% Оглавление %%%
