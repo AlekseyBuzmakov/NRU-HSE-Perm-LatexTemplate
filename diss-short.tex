@@ -90,18 +90,15 @@
 \end{TABLE}
 
 \begin{landscape}
-Пример таблицы на несколько страниц.
+Пример таблицы на несколько страниц. Label внутри caption \ref{tbl:name}, label внутри \text{[]} \ref{tbl:error}.
 \begin{longtblr}
 [
-%theme=longtable1,
-caption={This is a long table that uses the ``longtblr'' theme to align the table's caption to the left},
-%label = {tab:test},
+caption={This is a long table that uses the ``longtblr'' theme to align the table's caption to the left\label{tbl:name}},
+label={tbl:error}
 ]{
 colspec = {|X|X|X|X|X|X|},
 rowhead = 1,
 hlines,
-%row{even} = {gray9},
-%row{1} = {olive9},
 }
 Head1 & Head2 & Head3 & Head4 & Head5 & Head6 \\
 Управление интеграцией проекта & Разработка устава проекта & Разработка плана управления проектом

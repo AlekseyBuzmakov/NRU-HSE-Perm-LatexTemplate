@@ -38,4 +38,4 @@ A LaTeX template for bachelor and master thesis at HSE University (Perm)
 ```
 Это происходит из-за того, что $\LaTeX{}$ центрирует текст заголовка отдельно от счетчика, я не нашел другой фикс, чтобы было адекватно. Пытался \centering делать в prefix заголовка, но тогда при переносе слов они будут сразу под началом заголовка, отключение переноса делает также.
 ### Ссылки на longtblr
-Пакет `xassoccnt` конфликтует с `calc`, из-за этого ссылки на `longtblr` могут сломаться.
+Пакет `xassoccnt` конфликтует с `calc`, из-за этого ссылки на `longtblr` могут сломаться, если делать `\begin{longtblr}[caption={name},label={tbl:qwer}]`. Лучше делать `\begin{longtblr}[caption={name\label{tbl:test}}]`.
