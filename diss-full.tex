@@ -144,17 +144,14 @@
 
 В качестве примера таблицы см.~табл.~\ref{tbl:example-table}.
 
-\begin{TABLE}[h]{Пример таблицы\label{tbl:example-table}}
-	\begin{tabular}{c|cc}
-		\hline\hline % Двойная линия сверху таблицы
-		Заголовок 1 & Заголовок 2 & Заголовок 3 \\ 
-		\hline % Одинарная линия между заголовками и телом таблицы
-		1 & 2 & 3 \\
-		4 & 5 & 6 \\
-		\hline\hline % Двойная линия снизу таблицы
-	\end{tabular}
+\begin{TABLE}[H]{Пример таблицы\label{tbl:example-table}}
+  \begin{tabular}{|c|c|c|}
+	\hline
+	Заголовок 1 & Заголовок 2 & Заголовок 3 \\ \hline % Одинарная линия между заголовками и телом таблицы
+	1 & 2 & 3 \\ \hline
+	4 & 5 & 6 \\ \hline
+  \end{tabular}
 \end{TABLE}
-
 
 Пример таблицы на несколько страниц.
 \begin{longtblr}
