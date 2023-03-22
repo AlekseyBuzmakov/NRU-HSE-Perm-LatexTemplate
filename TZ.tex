@@ -7,7 +7,11 @@
 
 \renewcommand*{\thesubsection}{\arabic{section}.\arabic{subsection}}
 \titleformat{\subsection}{\large\bfseries}{\thesubsection.}{4pt}{}
-%%%%%%%%%%%%%%%%%%%%%%%%%%5
+\renewcommand*{\thesubsubsection}{\arabic{section}.\arabic{subsection}.\arabic{subsubsection}}
+\titleformat{\subsubsection}{\normalsize\bfseries}{\thesubsubsection.}{4pt}{}
+\setcounter{secnumdepth}{4}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
 { % для титульного листа
 \chapter*{ПРИЛОЖЕНИЕ А Техническое задание на разрабатываемую систему}
 \stepcounter{chapter}
