@@ -1,25 +1,26 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{HSEUniversityPractice}[2019-06-15 Template for dessirtations and other artefacts]
+\ProvidesClass{HSEUniversity}[2022-11-13 Template for dessirtations and other artefacts]
 %\LoadClass[a4paper]{extreport}
-\LoadClass[fontsize=13bp]{scrreprt}
+\LoadClass[fontsize=13bp]{scrreprt} % Times New Roman 13 size
 \RequirePackage{ifpdf}
 \RequirePackage{kvoptions}
-\RequirePackage[a4paper,left=30mm,right=15mm,top=20mm,bottom=20mm,footskip=15mm]{geometry}
+\RequirePackage[a4paper,left=30mm,right=15mm,top=20mm,bottom=25mm,footskip=15mm]{geometry}
+\RequirePackage{mathtools}
 
-\RequirePackage{cmap}                 % Улучшенный поиск русских слов в полученном pdf-файле
-\RequirePackage[T2A]{fontenc}         % Поддержка русских букв
-\RequirePackage[utf8]{inputenc}       % Кодировка utf8
+\RequirePackage{cmap}            % Улучшенный поиск русских слов в полученном pdf-файле
+\RequirePackage[T2A]{fontenc}    % Поддержка русских букв
+\RequirePackage[utf8]{inputenc}  % Кодировка utf8
 \RequirePackage{csquotes}
-\RequirePackage[russian]{babel}       % Языки: русский, английский
-\RequirePackage{amsmath}
+\RequirePackage[main=russian,english]{babel}  % Языки: русский, английский
+
+\RequirePackage{listings}
+\RequirePackage{xcolor}
 
 \RequirePackage[font=small,skip=4pt]{caption}
 \RequirePackage{graphicx}
+\RequirePackage{hyphenat} % чтобы не было переноса
 
-%\RequirePackage{fontspec}
-%\setmainfont{Times New Roman} % Times New Roman
-
-%\usepackage{pscyr}             % Красивые русские шрифты
+%\usepackage{pscyr}    % Красивые русские шрифты
 %\renewcommand{\rmdefault}{ftm} % Включаем Times New Roman
 
 %%% Оформление абзацев %%%
@@ -29,6 +30,7 @@
 \RequirePackage{titlesec}
 
 %%% Table of Contents %%%
+\RequirePackage[toc,titletoc,title]{appendix}
 \RequirePackage{tocloft}
 \RequirePackage{titletoc}
 
@@ -36,44 +38,149 @@
 \RequirePackage{amsfonts}
 \RequirePackage{amssymb}
 
+\RequirePackage{tabularx} % авто лайнбрейки при достижении лимита в таблице
+\RequirePackage{pdflscape} % горизонтал для приложений
+
+
 
 \RequirePackage[linktocpage=true,plainpages=false,pdfpagelabels=false]{hyperref}
+
+%%%%% Listing %%%%
+%New colors defined below
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{listingstyle}{
+  backgroundcolor=\color{backcolour},   commentstyle=\color{codegreen},
+  keywordstyle=\color{magenta},
+  numberstyle=\tiny\color{codegray},
+  stringstyle=\color{codepurple},
+  basicstyle=\ttfamily\footnotesize,
+  breakatwhitespace=false,
+  breaklines=true,
+  captionpos=b,
+  keepspaces=true,
+  numbers=left,
+  numbersep=5pt,
+  showspaces=false,
+  showstringspaces=false,
+  showtabs=false,
+  tabsize=2,
+      inputencoding=utf8,
+    extendedchars=true,
+    literate=
+    {а}{{\cyra}}1
+    {б}{{\cyrb}}1
+    {в}{{\cyrv}}1
+    {г}{{\cyrg}}1
+    {д}{{\cyrd}}1
+    {е}{{\cyre}}1
+    {ё}{\"{\cyre}}1
+    {ж}{{\cyrzh}}1
+    {з}{{\cyrz}}1
+    {и}{{\cyri}}1
+    {й}{{\cyrishrt}}1
+    {к}{{\cyrk}}1
+    {л}{{\cyrl}}1
+    {м}{{\cyrm}}1
+    {н}{{\cyrn}}1
+    {о}{{\cyro}}1
+    {п}{{\cyrp}}1
+    {р}{{\cyrr}}1
+    {с}{{\cyrs}}1
+    {т}{{\cyrt}}1
+    {у}{{\cyru}}1
+    {ф}{{\cyrf}}1
+    {х}{{\cyrh}}1
+    {ц}{{\cyrc}}1
+    {ч}{{\cyrch}}1
+    {ш}{{\cyrsh}}1
+    {щ}{{\cyrshch}}1
+    {ъ}{{\cyrhrdsn}}1
+    {ы}{{\cyrery}}1
+    {ь}{{\cyrsftsn}}1
+    {э}{{\cyrerev}}1
+    {ю}{{\cyryu}}1
+    {я}{{\cyrya}}1
+    {А}{{\CYRA}}1
+    {Б}{{\CYRB}}1
+    {В}{{\CYRV}}1
+    {Г}{{\CYRG}}1
+    {Д}{{\CYR96}}1
+    {Е}{{\CYRE}}1
+    {Ё}{{\"{\CYRE}}}1
+    {Ж}{{\CYRZH}}1
+    {З}{{\CYRZ}}1
+    {И}{{\CYRI}}1
+    {Й}{{\CYRISHRT}}1
+    {К}{{\CYRK}}1
+    {Л}{{\CYRL}}1
+    {М}{{\CYRM}}1
+    {Н}{{\CYRN}}1
+    {О}{{\CYRO}}1
+    {П}{{\CYRP}}1
+    {Р}{{\CYRR}}1
+    {С}{{\CYRS}}1
+    {Т}{{\CYRT}}1
+    {У}{{\CYRU}}1
+    {Ф}{{\CYRF}}1
+    {Х}{{\CYRH}}1
+    {Ц}{{\CYRC}}1
+    {Ч}{{\CYRCH}}1
+    {Ш}{{\CYRSH}}1
+    {Щ}{{\CYRSHCH}}1
+    {Ъ}{{\CYRHRDSN}}1
+    {Ы}{{\CYRERY}}1
+    {Ь}{{\CYRSFTSN}}1
+    {Э}{{\CYREREV}}1
+    {Ю}{{\CYRYU}}1
+    {Я}{{\CYRYA}}1
+}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Библиография %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \RequirePackage[
-	style=gost-numeric-min,
-	language=russian,
-	babel=other,
-	backend=biber,
-	defernumbers=true,% Нумерация начинается как только встречается группа.
-	sorting=none,
-	url=false,
-	doi=false,
-	isbn=false,
-	movenames=false,
-	maxnames=100
-]{biblatex}
-\renewcommand*{\multicitedelim}{\addcomma\space}
+  style=gost-numeric-min,
+  language=auto,
+  backend=biber,
+  defernumbers=true,% Нумерация начинается как только встречается группа.
+  sorting=none,
+  url=false,
+  doi=false,
+  isbn=false,
+  movenames=false,
+  bibencoding=utf8,% кодировка bib файла
+  language=autobib,% получение языка из babel/polyglossia, default: autobib % если ставить autocite или auto, то цитаты в тексте с указанием страницы, получат указание страницы на языке оригинала
+  autolang=other,% многоязычная библиография
+  clearlang=true,% внутренний сброс поля language, если он совпадает с языком из babel/polyglossia
+  %defernumbers=true,% нумерация проставляется после двух компиляций, зато позволяет выцеплять библиографию по ключевым словам и нумеровать не из большего списка
+  sortcites=true,% сортировать номера затекстовых ссылок при цитировании (если в квадратных скобках несколько ссылок, то отображаться будут отсортированно, а не абы как)
+  ]{biblatex}
 
-%\usepackage{cite} % Красивые ссылки на литературу
+%%%%%%%% для форматирования под гост 2011
+%%% https://github.com/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template/blob/dbd175fb59fe5d1d29df3048ce4aded671fb7db9/Readme/Bibliography.md#%D1%81%D1%82%D1%80%D0%BE%D0%B3%D0%BE%D1%81%D1%82%D1%8C-%D1%81%D0%BE%D0%BE%D1%82%D0%B2%D0%B5%D1%82%D1%81%D1%82%D0%B2%D0%B8%D1%8F-%D0%B3%D0%BE%D1%81%D1%82
+\renewcommand*{\multicitedelim}{\addcomma\space}
+\ltx@iffilelater{biblatex-gost.def}{2017/05/03}%
+{\toggletrue{bbx:gostbibliography}%
+
+\renewcommand*{\revsdnamepunct}{\addcomma}}{}
 % Настройки языка в списке литературы.
 \DeclareSourcemap{
   \maps[datatype=bibtex,overwrite=false]{
     \map{
       \step[fieldset=language,fieldvalue=english]
     }
-  \map{
-    \step[fieldsource=language,match=\regexp{English},replace=\regexp{english}]
-  }
-  \map{
-    \step[fieldsource=language]
-    \step[fieldset=hyphenation,origfieldval]
-  }
-%   \map{
-%   \step[fieldset=hyphenation,fieldvalue={english}]
-%   }
+    \map{
+      \step[fieldsource=language,match=\regexp{English},replace=\regexp{english}]
+    }
+    \map{
+      \step[fieldsource=language]
+      \step[fieldset=hyphenation,origfieldval]
+    }
   }
 }
 %%%%%%%%%%%%%%%%%%%%%%
@@ -81,31 +188,47 @@
 \NewBibliographyString{langjapanese}
 \NewBibliographyString{fromjapanese}
 
+% TODO change to printbibliography and \renewcommand{\bibname}{Whatever floats your boat} \renewcommand{\bibsection}{\section{\bibname}}
+% \printbibliography[title={Articles},type=article,sorting=nyt,heading=subbibnumbered]
 \newcommand{\putbibliography}{
   \chapter**{Библиографический список}
   \addcontentsline{toc}{chapter}{Библиографический список}
-
   \printbibliography[heading=none] %title={Библиографический список}, env=gostbibliography,
 }
 
+
+%%% Счётчики
+\RequirePackage{xassoccnt}
+% счетчик иллюстраций
+\NewTotalDocumentCounter{totalfigures}
+\DeclareAssociatedCounters{figure}{totalfigures}
+\DeclareAssociatedCounters{FIGURE}{totalfigures}
+
+% счетчик таблиц
+\NewTotalDocumentCounter{totaltables}
+\DeclareAssociatedCounters{table}{totaltables}
+\DeclareAssociatedCounters{TABLE}{totaltables}
+\DeclareAssociatedCounters{longtblr}{totaltables}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Установка основных характеристик текста
 
-\sloppy        % Избавляемся от переполнений
+\sloppy   % Избавляемся от переполнений
 \clubpenalty=10000    % Запрещаем разрыв страницы после первой строки абзаца
 \widowpenalty=10000   % Запрещаем разрыв страницы после последней строки абзаца
 
 \linespread{1.5} % Полуторный интервал
 \setlength{\parindent}{12.5mm} % Отступ красной строки
 
-% Подпись к таблице и рисункам
-\captionsetup[table]{position=t, singlelinecheck=false, justification=raggedright,labelsep=endash, name=Таблица}
-\captionsetup[figure]{labelfont={bf,it}, textfont={bf,it}, position=b, singlelinecheck=false, justification=centering, labelsep=endash, name=Рисунок}
+\RequirePackage{float}
+% Попись таблицы и рисунка
+\captionsetup[table]{position=t, singlelinecheck=false, justification=raggedleft, labelsep=endash, name=Таблица}
+\captionsetup[figure]{labelfont={bf, it}, textfont={bf, it}, position=b, singlelinecheck=false, labelsep=endash, justification=centering, name=Рисунок}
+\RequirePackage{rotating} % Переворачивание таблиц и картинок
 
 %%% Главы и разделы %%%
 \titleformat{\chapter}%[display]
   {\Large\bfseries\centering}
-  {\chaptertitlename\ \thechapter.}{4pt}{}
+  {\chaptertitlename\ \thechapter}{4pt}{}
 \titlespacing*{\chapter}{0pt}{0pt}{12pt}
 \titleformat{\section}
   {\large\bfseries\centering}
@@ -116,31 +239,31 @@
   {\thesubsection.}{3pt}{}
 \titlespacing*{\subsection}{0pt}{8pt}{4pt}
 \titleformat{\subsubsection}
-  {\bfseries\centering}
+  {\centering}
   {\thesubsubsection.}{3pt}{}
 \titlespacing*{\subsubsection}{0pt}{8pt}{4pt}
 
-%% Маркированые списки
+%%% Маркированные списки %%%
 \renewcommand\labelitemi{--}
 \renewcommand\labelitemii{--}
 \renewcommand\labelitemiii{--}
 \renewcommand\labelitemiv{--}
-
-\RequirePackage{enumitem}   % Для отступов
-\setlist{leftmargin=15mm}
+\RequirePackage{enumitem}
+\setlist[enumerate]{label={\arabic*.}, ref={\arabic*}, leftmargin={20mm}, nosep} % все уровни нумерованного списка арабские цифры
+\setlist[itemize]{leftmargin={20mm}, nosep}
 
 
 %%% Оглавление %%%
 \renewcommand{\cftchapdotsep}{\cftdotsep}
 \let\@originalchapter\chapter
 \def\chapter{
-	 \@ifstar\chapterstar\@originalchapter
+  \@ifstar\chapterstar\@originalchapter
  }
 \def\chapterstar{
-	 \@ifstar\chapter@nonum@notoc\chapter@nonum
- }
+   \@ifstar\chapter@nonum@notoc\chapter@nonum
+}
 \newcommand\chapter@nonum@notoc[2][]{
-  \@originalchapter*{#2}
+   \@originalchapter*{#2}
 }
 \newcommand\chapter@nonum[2][]{
    \@originalchapter*{#2}
@@ -149,9 +272,116 @@
 \titlecontents{chapter}% <section-type>
   [0pt]% <left>
   {}% <above-code>
-  {\bfseries\chaptername\ \thecontentslabel.\enskip}% <numbered-entry-format>
+  {\chaptername\ \thecontentslabel\enskip}% <numbered-entry-format>
   {}% <numberless-entry-format>
-  {\bfseries\dotfill\contentspage}% <filler-page-format>
+  {\dotfill\contentspage}% <filler-page-format>
+
+
+% author @makspepe
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%% Таблица на несколько страниц %%%%%
+
+\RequirePackage{tabularray} % собственно лонгтейбл, но из пака tabulararray (https://ctan.math.illinois.edu/macros/latex/contrib/tabularray/tabularray.pdf)
+\RequirePackage{xcolor} % чтобы можно было красить таблицы
+
+\ExplSyntaxOn
+% выравнивание подписи таблицы по правому краю
+\DefTblrTemplate { caption } { normal }
+{
+  \hbox_set:Nn \l__tblr_caption_box
+  {
+    \UseTblrTemplate { caption-tag } { default }
+    \UseTblrTemplate { caption-sep }  { empty } {~--~} % ~ как замена space в expl syntax
+    \UseTblrTemplate { caption-text } { default }
+  }
+  \dim_compare:nNnTF { \box_wd:N \l__tblr_caption_box } > { \hsize }
+  {
+    \UseTblrAlign { caption }
+    \UseTblrIndent { caption }
+    \hbox_set:Nn \l__tblr_caption_left_box
+    {
+      \UseTblrTemplate { caption-tag } { default }
+      \UseTblrTemplate { caption-sep } { empty } {~--~}
+    }
+    \hangindent = \box_wd:N \l__tblr_caption_left_box
+    \hangafter = 1
+    \UseTblrHang { caption }
+    \leavevmode
+    \hbox_unpack:N \l__tblr_caption_box
+    \par
+  }
+  {
+    \centering
+    \makebox [\hsize] [r] { \box_use:N \l__tblr_caption_box } % смени r на l, c, или j чтобы не по правому
+    \par
+  }
+}
+
+% выравнивание продолжения подписи таблицы по правому
+\DefTblrTemplate { capcont } { normal }
+{
+  \hbox_set:Nn \l__tblr_caption_box
+  {
+    \UseTblrTemplate { caption-tag } { default }
+    \UseTblrTemplate { caption-sep } { empty } {~--~}
+    \UseTblrTemplate { caption-text } { default }
+    \space
+    \UseTblrTemplate { conthead-text } { default }
+  }
+  \dim_compare:nNnTF { \box_wd:N \l__tblr_caption_box } > { \hsize }
+  {
+    \UseTblrAlign { capcont }
+    \UseTblrIndent { capcont }
+    \hbox_set:Nn \l__tblr_caption_left_box
+    {
+      \UseTblrTemplate { caption-tag } { default }
+      \UseTblrTemplate { caption-sep } { empty } {~--~}
+    }
+    \hangindent = \box_wd:N \l__tblr_caption_left_box
+    \hangafter = 1
+    \UseTblrHang { capcont }
+    \leavevmode
+    \hbox_unpack:N \l__tblr_caption_box
+    \par
+  }
+  {
+    \centering
+    \makebox [\hsize] [r] { \box_use:N \l__tblr_caption_box } % смени r на l, c, или j чтобы не по правому
+    \par
+  }
+}
+
+
+\SetTblrTemplate{caption}{normal} % применяем изменения
+\SetTblrTemplate{capcont}{normal}
+\ExplSyntaxOff
+
+
+
+% подписи на русском
+\DefTblrTemplate{conthead-text}{fancy}{(Продолжение)}
+    \SetTblrTemplate{conthead-text}{fancy}
+
+\DefTblrTemplate{contfoot-text}{fancy}{Продолжение на следующей странице}
+    \SetTblrTemplate{contfoot-text}{fancy}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%% Для ротации номеров в горизонт позиции страницы %%%%%
+\RequirePackage{pdflscape}
+
+\AddToHook{env/landscape/begin}
+ {
+  \clearpage
+  \pagestyle{empty}
+  \AddToHook{shipout/background}[sven/page]
+    {
+     \put(0.9\paperwidth,-0.5\paperheight)%adapt values
+      {\rotatebox{90}{\thepage}}
+    }
+ }
+
+\AddToHook{env/landscape/after}
+{\RemoveFromHook{shipout/background}[sven/page]}
 
 %%%%%%%%%%%%%%%%%%%%%%%%
 % Обработка опций пакета
@@ -179,7 +409,7 @@
 \DeclareVoidOption{BI}{
   \def\@facultyString{Факультет социально-экономических и компьютерных наук}
   \def\@specName{Бизнес информатика}
-  \def\@specCode{38.03.05 Бизнес-информатика}
+  \def\@specCode{09.03.04 Программная инженерия}
 }
 % Available options for the type
 \DeclareVoidOption{KR}{
@@ -187,13 +417,12 @@
 }
 \DeclareVoidOption{VKR}{
   \def\@typeString{Выпускная квалификационная работа}
-  \HasReviewertrue
 }
 
 \DeclareDefaultOption{%
   \PackageWarningNoLine{\@currname}{%
-      Unknown option `\CurrentOption'\MessageBreak
-      is passed to class `report'%
+    Unknown option `\CurrentOption'\MessageBreak
+    is passed to class `report'%
   }%
   % Pass the option to class report
   \expandafter\PassOptionToClass
@@ -201,21 +430,28 @@
 }
 \ProcessKeyvalOptions*
 
-\def\@year{1900}
+\def\@year{\the\year{}}
+\def\@supervisorTitle{supervisor title}
+\def\@supervisorAcademic{supervisor academic}
+\def\@supervisorName{I.I.~Ivanov}
 \def\@reviewerTitle{}
 \def\@reviewerName{I.I.~Ivanov}
 \def\@abstract{TODO}
 \def\@group{Unknown-00-0}
-\def\@companyReviewerTitle{}
+\def\@companyReviewerTitle{company reviewer title}
 \def\@companyReviewerName{I.I.~Ivanov}
-\def\@supervisorTitle{}
-\def\@supervisorName{I.I.~Ivanov}
 
-\newcommand{\Year}[1]{\def\@year{#1}}
 \newcommand{\Group}[1]{\def\@group{#1}}
-\newcommand{\supervisor}[2]{
+\newcommand{\Year}[1]{\def\@year{#1}}
+\newcommand{\supervisor}[3]{
   \def\@supervisorTitle{#1}
-  \def\@supervisorName{#2}
+  \def\@supervisorAcademic{#2}
+  \def\@supervisorName{#3}
+}
+\newcommand{\reviewer}[2]{
+  \def\@reviewerTitle{#1}
+  \def\@reviewerName{#2}
+  \HasReviewertrue
 }
 \newcommand{\company}[2]{
   \def\@companyReviewerTitle{#1}
@@ -225,72 +461,80 @@
   \def\@abstract{#1}
 }
 
+%https://tex.stackexchange.com/questions/55698/text-under-a-line
+\newcommand\tline[3]{
+    $\underset{\text{\tiny{(#3)}}}{\underline{\makebox[#1\textwidth][l]{#2}}}$
+}
+
+% \newcommand\tline[3]{
+%     $\underset{\text{\tiny{(#3)}}}{
+%     \begin{minipage}[l]{#1\textwidth}
+%     \underline{{#2}}
+%     \end{minipage}
+%     }$
+% }
+
 \renewcommand{\maketitle}{
 {
   \thispagestyle{empty}
 
-  \centering{
-    Пермский филиал федерального государственного автономного образовательного \\
-    учреждения высшего образования Национальный исследовательский университет \\
+  \centering
+
+  {
+    Пермский филиал федерального государственного автономного образовательного\\ учреждения высшего образования
+    Национальный исследовательский университет\\
     <<Высшая школа экономики>>
   }
 
   \@facultyString
 
+
   Образовательная программа бакалавриата <<\@specName>>
 
   \vfill
-
-  \centering{
-    \textbf{\MakeUppercase{Отчет}} \\
-    \textbf{по производственной практике}
-  }
+  \vfill
+  \textbf{ОТЧЕТ\\ по преддипломной практике}
 
   \vfill
-
+  \vfill
   \hfill\begin{minipage}[c]{0.5\textwidth}
-    Выполнил студент группы~ \underline{\makebox[0.37\textwidth][l]{\@group}}\\
-    %$\underset{\text{name}}{\underline{some text\hspace{4cm}}}$ \\
-    \underline{\makebox[\textwidth][l]{\@author}}\\
-    \hrule
+    Выполнил студент группы~\underline{\makebox[0.37\textwidth][l]{\@group}}\\
+    \tline{1}{\@author}{Фамилия, Имя, Отчество}\\
+    \tline{1}{\phantom{TEXT}}{подпись}
   \end{minipage}
 
-  %\vfill
-
+  \vfill
+  {
   \raggedright
   \begin{minipage}{0.5\textwidth}
-    Проверели:\\
+    Проверили:\\
     Руководитель практики\\
-    от Предприятия:\\
-    \@companyReviewerTitle
+    от предприятия:\\
+    \tline{1}{\@companyReviewerTitle}{должность}\\
+    \tline{1}{\@companyReviewerName}{Фамилия, Имя, Отчество}\\
+    % если убрать phantom, то размер линии изменится
+    \tline{0.25}{\phantom{TEXT}}{оценка}\hfill\tline{0.5}{\phantom{TEXT}}{подпись}\\
+    \begin{minipage}{\textwidth}
+        \hspace{0.5\textwidth}\tline{0.4}{\phantom{TEXT}}{дата}
+    \end{minipage}\hfill
+  \end{minipage}\hfill
 
-    \@supervisorName
-
-    % \underline{\makebox[\textwidth][l]{\@companyReviewerTitle}}\\
-    %\underline{\makebox[\textwidth][l]{\@companyReviewerName}}\\
-    \underline{\makebox[0.25\textwidth][l]{}} \hspace{0.25\textwidth} \underline{\makebox[0.5\textwidth][r]{\hfill}}\\
-    \hfill\underline{\makebox[0.4\textwidth][r]{}} %TODO
-  \end{minipage}
-
-  \vfill
-
-  \raggedright
   \begin{minipage}{0.5\textwidth}
     Руководитель практики\\
     от НИУ ВШЭ -- Пермь:\\
-    \@supervisorTitle
-
-    \@supervisorName
-
-    %\underline{\makebox[\textwidth][l]{\@supervisorTitle}}\\
-    %\underline{\makebox[\textwidth][l]{\@supervisorName}}\\
-    \underline{\makebox[0.25\textwidth][l]{}} \hspace{0.25\textwidth} \underline{\makebox[0.5\textwidth][r]{\hfill}}\\
-    \hfill\underline{\makebox[0.4\textwidth][r]{}} %TODO
+    \tline{1}{\@supervisorTitle, \@supervisorAcademic}{должность, ученая степень, ученое звание}\\
+    \tline{1}{\@supervisorName}{Фамилия, Имя, Отчество}\\
+    \tline{0.25}{\phantom{TEXT}}{оценка}\hfill\tline{0.5}{\phantom{TEXT}}{подпись}\\
+    \begin{minipage}{\textwidth}
+        \hspace{0.5\textwidth}\tline{0.4}{\phantom{TEXT}}{дата}
+    \end{minipage}
   \end{minipage}\hfill
-
+  }
+  \vfill
+  \vfill
   \vfill
 
-  \centering{\textbf{Пермь, \@year{}}}
+  \textbf{Пермь, \@year{} год}
 
   \newpage
 }
@@ -306,6 +550,7 @@
 \newpage
 
 }
+
 
 \newsavebox{\TABLEbox}
 \newenvironment{TABLE}[2][t]
@@ -341,6 +586,28 @@
   \end{figure}
 }
 
-\newcommand{\appendixsection}[1]{\section{#1}\addcontentsline{toc}{chapter}{Приложение \thesection. \currentname}} % не уверен что работает
-\newcommand{\reftable}[1]{см.~таблицу~\ref{#1}}
-\newcommand{\reffig}[1]{Рисунок~\ref{#1}}
+% какие буквы можно юзать в TOC, тк буквы Ё, З, Й, О, Ч, Ъ, Ы, Ь не должны встречаться
+\def\cyrtoc#1{\ifcase #1\or А\or Б\or В\or Г\or Д\or Е\or Ж\or И\or К\or Л\or М\or Н\or П\or Р\or С\or Т\or У\or Ф\or Х\or Ц\or Ш\or Щ\or Э\or Ю\or Я\else \@ctrerr \fi}
+
+\newcommand\originalappendix{}
+\let\originalappendix\appendix
+\renewcommand{\appendix}{%
+  \label{pg:end} % для указания на номер последней страницы
+  \originalappendix
+  %\renewcommand{\thechapter}{\Asbuk{chapter}}
+  \renewcommand{\thechapter}{\cyrtoc{\value{chapter}}}
+  \renewcommand{\appendixname}{ПРИЛОЖЕНИЕ} % Можно не менять и заменить на команду с \MakeUppercase в \renewcommand у меня локально не компилит, а в overleaf все нормально
+  \titleformat{\chapter}
+    {\Large\bfseries\centering}
+    {\MakeUppercase{\chaptertitlename}\ \thechapter}{4pt}{}
+
+  \addtocontents{toc}{\protect\value{tocdepth}=\chaptertocdepth}
+  \renewcommand\addchaptertocentry[2]{%
+    \addtocentrydefault{chapter}{}{\appendixname~##1 ##2}
+    %\addtocentrydefault{chapter}{}{\MakeUppercase{\appendixname~##1} ##2}
+  }
+}
+
+
+\newcommand{\reftable}[1]{см. таблицу ~\ref{#1}}
+\newcommand{\reffig}[1]{Рисунок ~\ref{#1}}
