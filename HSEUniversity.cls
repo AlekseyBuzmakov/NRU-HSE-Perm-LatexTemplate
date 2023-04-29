@@ -39,7 +39,7 @@
 
 \RequirePackage{tabularx} % авто лайнбрейки при достижении лимита в таблице
 \RequirePackage{pdflscape} % горизонтал для приложений
-\RequirePackage{comment} % для боков comment \begin{comment} ... \end{comment}
+\RequirePackage{comment} % для блоков comment \begin{comment} ... \end{comment}
 
 
 \RequirePackage[linktocpage=true,plainpages=false,pdfpagelabels=false]{hyperref}
@@ -58,16 +58,16 @@
   numberstyle=\tiny\color{codegray},
   stringstyle=\color{codepurple},
   basicstyle=\ttfamily\footnotesize,
-  breakatwhitespace=false,         
-  breaklines=true,                 
-  captionpos=b,                    
-  keepspaces=true,                 
-  numbers=left,                    
-  numbersep=5pt,                  
-  showspaces=false,  
+  breakatwhitespace=false,
+  breaklines=true,
+  captionpos=b,
+  keepspaces=true,
+  numbers=left,
+  numbersep=5pt,
+  showspaces=false,
   showstringspaces=false,
-  showtabs=false,                  
-  tabsize=2,
+  showtabs=false,
+  tabsize=4,
   inputencoding=utf8,
   extendedchars=true,
   literate=
