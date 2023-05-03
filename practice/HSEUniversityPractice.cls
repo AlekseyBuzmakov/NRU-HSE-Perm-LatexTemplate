@@ -440,6 +440,8 @@
 \def\@group{Unknown-00-0}
 \def\@companyReviewerTitle{company reviewer title}
 \def\@companyReviewerName{I.I.~Ivanov}
+\newif\ifHasCompany
+\HasCompanyfalse
 
 \newcommand{\Group}[1]{\def\@group{#1}}
 \newcommand{\Year}[1]{\def\@year{#1}}
@@ -456,6 +458,7 @@
 \newcommand{\company}[2]{
   \def\@companyReviewerTitle{#1}
   \def\@companyReviewerName{#2}
+  \HasCompanytrue
 }
 \newcommand{\Abstract}[1]{
   \def\@abstract{#1}
@@ -508,16 +511,18 @@
   \raggedright
   \begin{minipage}{0.5\textwidth}
     Проверили:\\
-    Руководитель практики\\
-    от предприятия:\\
-    \tline{1}{\@companyReviewerTitle}{должность}\\
-    \tline{1}{\@companyReviewerName}{Фамилия, Имя, Отчество}\\
-    % если убрать phantom, то размер линии изменится
-    \tline{0.25}{\phantom{TEXT}}{оценка}\hfill\tline{0.5}{\phantom{TEXT}}{подпись}\\
-    \begin{minipage}{\textwidth}
+    \ifHasCompany
+      Руководитель практики\\
+      от предприятия:\\
+      \tline{1}{\@companyReviewerTitle}{должность}\\
+      \tline{1}{\@companyReviewerName}{Фамилия, Имя, Отчество}\\
+      % если убрать phantom, то размер линии изменится
+      \tline{0.25}{\phantom{TEXT}}{оценка}\hfill\tline{0.5}{\phantom{TEXT}}{подпись}\\
+      \begin{minipage}{\textwidth}
         \hspace{0.5\textwidth}\tline{0.4}{\phantom{TEXT}}{дата}
+      \end{minipage}\hfill
+      \fi
     \end{minipage}\hfill
-  \end{minipage}\hfill
 
   \begin{minipage}{0.5\textwidth}
     Руководитель практики\\
