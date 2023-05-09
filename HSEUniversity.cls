@@ -157,7 +157,7 @@
   language=autobib,% получение языка из babel/polyglossia, default: autobib % если ставить autocite или auto, то цитаты в тексте с указанием страницы, получат указание страницы на языке оригинала
   autolang=other,% многоязычная библиография
   clearlang=true,% внутренний сброс поля language, если он совпадает с языком из babel/polyglossia
-  %defernumbers=true,% нумерация проставляется после двух компиляций, зато позволяет выцеплять библиографию по ключевым словам и нумеровать не из большего списка
+  % defernumbers=true,% нумерация проставляется после двух компиляций, зато позволяет выцеплять библиографию по ключевым словам и нумеровать не из большего списка
   sortcites=true,% сортировать номера затекстовых ссылок при цитировании (если в квадратных скобках несколько ссылок, то отображаться будут отсортированно, а не абы как)
   maxnames=50,
 ]{biblatex}
@@ -259,23 +259,23 @@
 \let\@originalchapter\chapter
 \def\chapter{
   \@ifstar\chapterstar\@originalchapter
- }
+}
 \def\chapterstar{
-   \@ifstar\chapter@nonum@notoc\chapter@nonum
+  \@ifstar\chapter@nonum@notoc\chapter@nonum
 }
 \newcommand\chapter@nonum@notoc[2][]{
-   \@originalchapter*{#2}
+  \@originalchapter*{#2}
 }
 \newcommand\chapter@nonum[2][]{
-   \@originalchapter*{#2}
-   \addcontentsline{toc}{chapter}{#2}
+  \@originalchapter*{#2}
+  \addcontentsline{toc}{chapter}{#2}
 }
 \titlecontents{chapter}% <section-type>
-  [0pt]% <left>
-  {}% <above-code>
-  {\chaptername\ \thecontentslabel\enskip}% <numbered-entry-format>
-  {}% <numberless-entry-format>
-  {\dotfill\contentspage}% <filler-page-format>
+[0pt]% <left>
+{}% <above-code>
+{\chaptername\ \thecontentslabel\enskip}% <numbered-entry-format>
+{}% <numberless-entry-format>
+{\dotfill\contentspage}% <filler-page-format>
 
 
 % author @makspepe
@@ -371,15 +371,15 @@
 \RequirePackage{pdflscape}
 
 \AddToHook{env/landscape/begin}
- {
+{
   \clearpage
   \pagestyle{empty}
   \AddToHook{shipout/background}[sven/page]
-    {
-     \put(0.9\paperwidth,-0.5\paperheight)%adapt values
-      {\rotatebox{90}{\thepage}}
-    }
- }
+  {
+    \put(0.9\paperwidth,-0.5\paperheight)%adapt values
+    {\rotatebox{90}{\thepage}}
+  }
+}
 
 \AddToHook{env/landscape/after}
 {\RemoveFromHook{shipout/background}[sven/page]}
@@ -454,90 +454,91 @@
   \def\@abstract{#1}
 }
 
+%% TODO make title as class options
 \renewcommand{\maketitle}{
-{
-  \thispagestyle{empty}
-
-  \centering
-
   {
-    Пермский филиал федерального государственного автономного \\
-    образовательного учреждения высшего образования \\
-    Национальный исследовательский университет \\
-    <<Высшая школа экономики>>
-  }
+    \thispagestyle{empty}
 
-  \vfill
+    \centering
 
-  \@facultyString
+    {
+      Пермский филиал федерального государственного автономного \\
+      образовательного учреждения высшего образования \\
+      Национальный исследовательский университет \\
+      <<Высшая школа экономики>>
+    }
 
-  \vfill
-  \vfill
-  \vfill
+    \vfill
 
-  \@author
+    \@facultyString
 
-  \vfill
-  \vfill
+    \vfill
+    \vfill
+    \vfill
 
-  \textbf{\MakeUppercase{\@title}}
+    \@author
 
-  \textit{\@typeString}
+    \vfill
+    \vfill
 
-  \vfill
+    \textbf{\MakeUppercase{\@title}}
 
-  студента образовательной программы <<\@specName>> \\
-  по направлению подготовки \underline{\@specCode}
+    \textit{\@typeString}
 
-  \vfill
-  \vfill
-  \vfill
+    \vfill
 
-  \ifHasReviewer
+    студента образовательной программы <<\@specName>> \\
+    по направлению подготовки \underline{\@specCode}
+
+    \vfill
+    \vfill
+    \vfill
+
+    \ifHasReviewer
+      \begin{minipage}[t]{0.4\textwidth}
+        \begin{flushleft}
+          Рецензент \\
+          \nohyphens{\@reviewerTitle}
+
+          \vspace{2mm}
+
+          \@reviewerName
+        \end{flushleft}
+      \end{minipage}
+    \fi
+    \hfill
     \begin{minipage}[t]{0.4\textwidth}
       \begin{flushleft}
-        Рецензент \\
-        \nohyphens{\@reviewerTitle}
+        Руководитель \\
+        \nohyphens{\@supervisorTitle}, \nohyphens{\@supervisorAcademic}
 
-        \vspace{2mm}
+        \vspace{10mm}
 
-        \@reviewerName
+        \hrule
+        \vspace{3mm}
+
+        \@supervisorName
       \end{flushleft}
     \end{minipage}
-  \fi
-  \hfill
-  \begin{minipage}[t]{0.4\textwidth}
-    \begin{flushleft}
-      Руководитель \\
-      \nohyphens{\@supervisorTitle}, \nohyphens{\@supervisorAcademic}
 
-      \vspace{10mm}
+    \vfill
+    \vfill
+    \vfill
 
-      \hrule
-      \vspace{3mm}
+    Пермь, \@year{} год
 
-      \@supervisorName
-    \end{flushleft}
-  \end{minipage}
+    \newpage
+  }
 
-  \vfill
-  \vfill
-  \vfill
+  \chapter**{Аннотация}
+  \thispagestyle{empty}
+  \@abstract
 
-  Пермь, \@year{} год
+  \chapter**{Оглавление}
+
+  \@starttoc{toc}
 
   \newpage
-}
-
-\chapter**{Аннотация}
-\thispagestyle{empty}
-\@abstract
-
-\chapter**{Оглавление}
-
-\@starttoc{toc}
-
-\newpage
 
 }
 
@@ -584,17 +585,15 @@
 \renewcommand{\appendix}{%
   \label{pg:end} % для указания на номер последней страницы
   \originalappendix
-  %\renewcommand{\thechapter}{\Asbuk{chapter}}
+  % \renewcommand{\thechapter}{\Asbuk{chapter}}
   \renewcommand{\thechapter}{\cyrtoc{\value{chapter}}}
   \renewcommand{\appendixname}{ПРИЛОЖЕНИЕ} % Можно не менять и заменить на команду с \MakeUppercase в \renewcommand у меня локально не компилит, а в overleaf все нормально
-  \titleformat{\chapter}
-    {\Large\bfseries\centering}
-    {\MakeUppercase{\chaptertitlename}\ \thechapter}{4pt}{}
+  \titleformat{\chapter}{\Large\bfseries\centering}{\MakeUppercase{\chaptertitlename}\ \thechapter}{4pt}{}
 
   \addtocontents{toc}{\protect\value{tocdepth}=\chaptertocdepth}
   \renewcommand\addchaptertocentry[2]{%
     \addtocentrydefault{chapter}{}{\appendixname~##1 ##2}
-    %\addtocentrydefault{chapter}{}{\MakeUppercase{\appendixname~##1} ##2}
+    % \addtocentrydefault{chapter}{}{\MakeUppercase{\appendixname~##1} ##2}
   }
 }
 
