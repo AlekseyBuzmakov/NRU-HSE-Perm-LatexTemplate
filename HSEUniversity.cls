@@ -323,11 +323,11 @@
 {
   \hbox_set:Nn \l__tblr_caption_box
   {
-    \UseTblrTemplate { caption-tag } { default }
+    \UseTblrTemplate { conthead-text } { default }
+    \space
+    \UseTblrTemplate { caption-tag }{ empty } {\thetable} %%% PISS
     \UseTblrTemplate { caption-sep } { empty } {~--~}
     \UseTblrTemplate { caption-text } { default }
-    \space
-    \UseTblrTemplate { conthead-text } { default }
   }
   \dim_compare:nNnTF { \box_wd:N \l__tblr_caption_box } > { \hsize }
   {
@@ -352,19 +352,16 @@
   }
 }
 
-
 \SetTblrTemplate{caption}{normal} % применяем изменения
 \SetTblrTemplate{capcont}{normal}
 \ExplSyntaxOff
 
-
-
 % подписи на русском
-\DefTblrTemplate{conthead-text}{fancy}{(Продолжение)}
-    \SetTblrTemplate{conthead-text}{fancy}
+\DefTblrTemplate{conthead-text}{fancy}{Продолжение таблицы}
+\SetTblrTemplate{conthead-text}{fancy}
 
-\DefTblrTemplate{contfoot-text}{fancy}{Продолжение на следующей странице}
-    \SetTblrTemplate{contfoot-text}{fancy}
+\DefTblrTemplate{contfoot-text}{fancy}{(Продолжение на следующей странице)}
+\SetTblrTemplate{contfoot-text}{fancy}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%% Для ротации номеров в горизонт позиции страницы %%%%%
