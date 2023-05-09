@@ -5,7 +5,6 @@
 \RequirePackage{ifpdf}
 \RequirePackage{kvoptions}
 \RequirePackage[a4paper,left=30mm,right=15mm,top=20mm,bottom=25mm,footskip=15mm]{geometry}
-\RequirePackage{mathtools}
 
 \RequirePackage{cmap}            % Улучшенный поиск русских слов в полученном pdf-файле
 \RequirePackage[T2A]{fontenc}    % Поддержка русских букв
@@ -40,7 +39,7 @@
 
 \RequirePackage{tabularx} % авто лайнбрейки при достижении лимита в таблице
 \RequirePackage{pdflscape} % горизонтал для приложений
-
+\RequirePackage{comment} % для блоков comment \begin{comment} ... \end{comment}
 
 
 \RequirePackage[linktocpage=true,plainpages=false,pdfpagelabels=false]{hyperref}
@@ -53,7 +52,8 @@
 \definecolor{backcolour}{rgb}{0.95,0.95,0.92}
 
 \lstdefinestyle{listingstyle}{
-  backgroundcolor=\color{backcolour},   commentstyle=\color{codegreen},
+  backgroundcolor=\color{backcolour},
+  commentstyle=\color{codegreen},
   keywordstyle=\color{magenta},
   numberstyle=\tiny\color{codegray},
   stringstyle=\color{codepurple},
@@ -67,10 +67,10 @@
   showspaces=false,
   showstringspaces=false,
   showtabs=false,
-  tabsize=2,
-      inputencoding=utf8,
-    extendedchars=true,
-    literate=
+  tabsize=4,
+  inputencoding=utf8,
+  extendedchars=true,
+  literate=
     {а}{{\cyra}}1
     {б}{{\cyrb}}1
     {в}{{\cyrv}}1
@@ -138,7 +138,7 @@
     {Ю}{{\CYRYU}}1
     {Я}{{\CYRYA}}1
 }
-
+\lstset{style=listingstyle} % для красивых листингов
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Библиография %%%
@@ -157,9 +157,10 @@
   language=autobib,% получение языка из babel/polyglossia, default: autobib % если ставить autocite или auto, то цитаты в тексте с указанием страницы, получат указание страницы на языке оригинала
   autolang=other,% многоязычная библиография
   clearlang=true,% внутренний сброс поля language, если он совпадает с языком из babel/polyglossia
-  %defernumbers=true,% нумерация проставляется после двух компиляций, зато позволяет выцеплять библиографию по ключевым словам и нумеровать не из большего списка
+  % defernumbers=true,% нумерация проставляется после двух компиляций, зато позволяет выцеплять библиографию по ключевым словам и нумеровать не из большего списка
   sortcites=true,% сортировать номера затекстовых ссылок при цитировании (если в квадратных скобках несколько ссылок, то отображаться будут отсортированно, а не абы как)
-  ]{biblatex}
+  maxnames=50,
+]{biblatex}
 
 %%%%%%%% для форматирования под гост 2011
 %%% https://github.com/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template/blob/dbd175fb59fe5d1d29df3048ce4aded671fb7db9/Readme/Bibliography.md#%D1%81%D1%82%D1%80%D0%BE%D0%B3%D0%BE%D1%81%D1%82%D1%8C-%D1%81%D0%BE%D0%BE%D1%82%D0%B2%D0%B5%D1%82%D1%81%D1%82%D0%B2%D0%B8%D1%8F-%D0%B3%D0%BE%D1%81%D1%82
@@ -258,23 +259,23 @@
 \let\@originalchapter\chapter
 \def\chapter{
   \@ifstar\chapterstar\@originalchapter
- }
+}
 \def\chapterstar{
-   \@ifstar\chapter@nonum@notoc\chapter@nonum
+  \@ifstar\chapter@nonum@notoc\chapter@nonum
 }
 \newcommand\chapter@nonum@notoc[2][]{
-   \@originalchapter*{#2}
+  \@originalchapter*{#2}
 }
 \newcommand\chapter@nonum[2][]{
-   \@originalchapter*{#2}
-   \addcontentsline{toc}{chapter}{#2}
+  \@originalchapter*{#2}
+  \addcontentsline{toc}{chapter}{#2}
 }
 \titlecontents{chapter}% <section-type>
-  [0pt]% <left>
-  {}% <above-code>
-  {\chaptername\ \thecontentslabel\enskip}% <numbered-entry-format>
-  {}% <numberless-entry-format>
-  {\dotfill\contentspage}% <filler-page-format>
+[0pt]% <left>
+{}% <above-code>
+{\chaptername\ \thecontentslabel\enskip}% <numbered-entry-format>
+{}% <numberless-entry-format>
+{\dotfill\contentspage}% <filler-page-format>
 
 
 % author @makspepe
@@ -322,11 +323,11 @@
 {
   \hbox_set:Nn \l__tblr_caption_box
   {
-    \UseTblrTemplate { caption-tag } { default }
+    \UseTblrTemplate { conthead-text } { default }
+    \space
+    \UseTblrTemplate { caption-tag }{ empty } {\thetable} %%% PISS
     \UseTblrTemplate { caption-sep } { empty } {~--~}
     \UseTblrTemplate { caption-text } { default }
-    \space
-    \UseTblrTemplate { conthead-text } { default }
   }
   \dim_compare:nNnTF { \box_wd:N \l__tblr_caption_box } > { \hsize }
   {
@@ -351,34 +352,31 @@
   }
 }
 
-
 \SetTblrTemplate{caption}{normal} % применяем изменения
 \SetTblrTemplate{capcont}{normal}
 \ExplSyntaxOff
 
-
-
 % подписи на русском
-\DefTblrTemplate{conthead-text}{fancy}{(Продолжение)}
-    \SetTblrTemplate{conthead-text}{fancy}
+\DefTblrTemplate{conthead-text}{fancy}{Продолжение таблицы} % PISS
+\SetTblrTemplate{conthead-text}{fancy}
 
-\DefTblrTemplate{contfoot-text}{fancy}{Продолжение на следующей странице}
-    \SetTblrTemplate{contfoot-text}{fancy}
+\DefTblrTemplate{contfoot-text}{fancy}{(Продолжение на следующей странице)}
+\SetTblrTemplate{contfoot-text}{fancy}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%% Для ротации номеров в горизонт позиции страницы %%%%%
 \RequirePackage{pdflscape}
 
 \AddToHook{env/landscape/begin}
- {
+{
   \clearpage
   \pagestyle{empty}
   \AddToHook{shipout/background}[sven/page]
-    {
-     \put(0.9\paperwidth,-0.5\paperheight)%adapt values
-      {\rotatebox{90}{\thepage}}
-    }
- }
+  {
+    \put(0.9\paperwidth,-0.5\paperheight)%adapt values
+    {\rotatebox{90}{\thepage}}
+  }
+}
 
 \AddToHook{env/landscape/after}
 {\RemoveFromHook{shipout/background}[sven/page]}
