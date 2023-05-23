@@ -161,6 +161,7 @@
   sortcites=true,% сортировать номера затекстовых ссылок при цитировании (если в квадратных скобках несколько ссылок, то отображаться будут отсортированно, а не абы как)
   maxnames=50,
 ]{biblatex}
+\let\bibnamedelimd\addnbspace % имена с неразрывным пробелом tex.stackexchange.com/questions/567160
 
 %%%%%%%% для форматирования под гост 2011
 %%% https://github.com/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template/blob/dbd175fb59fe5d1d29df3048ce4aded671fb7db9/Readme/Bibliography.md#%D1%81%D1%82%D1%80%D0%BE%D0%B3%D0%BE%D1%81%D1%82%D1%8C-%D1%81%D0%BE%D0%BE%D1%82%D0%B2%D0%B5%D1%82%D1%81%D1%82%D0%B2%D0%B8%D1%8F-%D0%B3%D0%BE%D1%81%D1%82
