@@ -139,6 +139,9 @@
     {Я}{{\CYRYA}}1
 }
 \lstset{style=listingstyle} % для красивых листингов
+%% Оформление подписей к листингам в стандарте вышки
+\DeclareCaptionFormat{modifiedlst}{\lstlistingname~\thelstlisting~--~#3}
+\captionsetup[lstlisting]{format=modifiedlst}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Библиография %%%
