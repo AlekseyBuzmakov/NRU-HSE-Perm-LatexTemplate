@@ -50,6 +50,7 @@
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
 \definecolor{codepurple}{rgb}{0.58,0,0.82}
 \definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\definecolor{whitesmoke}{rgb}{0.96, 0.96, 0.96}
 
 \lstdefinestyle{listingstyle}{
   backgroundcolor=\color{backcolour},
@@ -142,6 +143,30 @@
 %% Оформление подписей к листингам в стандарте вышки
 \DeclareCaptionFormat{modifiedlst}{\lstlistingname~\thelstlisting~--~#3}
 \captionsetup[lstlisting]{format=modifiedlst}
+
+% Если язык не поддерживается (например, js) можно добавить свой https://tex.stackexchange.com/questions/89574/language-option-supported-in-listings
+% или воспользоваться функцией без выделения синтаксиса через \lstset{style=listingstyle}
+\lstdefinestyle{monochromestyle}{
+  backgroundcolor=\color{whitesmoke},
+  extendedchars=true,
+  basicstyle=\footnotesize\ttfamily,
+  showstringspaces=false,
+  showspaces=false,
+  numberstyle=\footnotesize,
+  numbersep=9pt,
+  breakatwhitespace=false,
+  breaklines=true,
+  captionpos=b,
+  keepspaces=true,
+  numbers=left,
+  numbersep=5pt,
+  showspaces=false,
+  showstringspaces=false,
+  showtabs=false,
+  tabsize=4,
+  inputencoding=utf8,
+  extendedchars=true,
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Библиография %%%
