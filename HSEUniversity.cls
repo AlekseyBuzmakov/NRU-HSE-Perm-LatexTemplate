@@ -1,7 +1,7 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{HSEUniversity}[2022-11-13 Template for dessirtations and other artefacts]
 %\LoadClass[a4paper]{extreport}
-\LoadClass[fontsize=13bp]{scrreprt} % Times New Roman 13 size
+\LoadClass[fontsize=13pt]{scrreprt} % Times New Roman 13 size
 \RequirePackage{ifpdf}
 \RequirePackage{kvoptions}
 \RequirePackage[a4paper,left=30mm,right=15mm,top=20mm,bottom=25mm,footskip=15mm]{geometry}
@@ -42,7 +42,11 @@
 \RequirePackage{comment} % для блоков comment \begin{comment} ... \end{comment}
 
 
-\RequirePackage[linktocpage=true,plainpages=false,pdfpagelabels=false]{hyperref}
+\RequirePackage[
+linktocpage=true, % в оглавлении ссылками будут выделяться только номера страниц
+%plainpages=false,
+%pdfpagelabels=false,
+]{hyperref}
 
 %%%%% Listing %%%%
 %New colors defined below
