@@ -316,7 +316,6 @@ linktocpage=true, % в оглавлении ссылками будут выде
 %%%% Таблица на несколько страниц %%%%%
 
 \RequirePackage{tabularray} % собственно лонгтейбл, но из пака tabulararray (https://ctan.math.illinois.edu/macros/latex/contrib/tabularray/tabularray.pdf)
-\RequirePackage{xcolor} % чтобы можно было красить таблицы
 
 \ExplSyntaxOn
 % выравнивание подписи таблицы по правому краю
@@ -426,8 +425,13 @@ linktocpage=true, % в оглавлении ссылками будут выде
 \def\@typeString{UNKNOWN WORK TYPE}
 \def\@specName{UNKOWN SPECIALIZATION}
 \def\@specCode{00.00.00.UNKOWN SPECIALIZATION}
+
+\newif\ifIsPractice
+\IsPracticefalse
 \newif\ifHasReviewer
 \HasReviewerfalse
+\newif\ifHasCompany
+\HasCompanyfalse
 
 % Available options for the specialiazation
 % PI -- Software Engeneers
@@ -449,6 +453,9 @@ linktocpage=true, % в оглавлении ссылками будут выде
 \DeclareVoidOption{VKR}{
   \def\@typeString{Выпускная квалификационная работа}
 }
+\DeclareVoidOption{Practice}{
+  \IsPracticetrue
+}
 
 \DeclareDefaultOption{%
   \PackageWarningNoLine{\@currname}{%
@@ -468,7 +475,12 @@ linktocpage=true, % в оглавлении ссылками будут выде
 \def\@reviewerTitle{}
 \def\@reviewerName{I.I.~Ivanov}
 \def\@abstract{TODO}
+\def\@companyReviewerTitle{company reviewer title}
+\def\@companyReviewerName{I.I.~Ivanov}
+\def\@group{Unknown-00-0}
 
+
+\newcommand{\Group}[1]{\def\@group{#1}}
 \newcommand{\Year}[1]{\def\@year{#1}}
 \newcommand{\supervisor}[3]{
   \def\@supervisorTitle{#1}
@@ -480,23 +492,25 @@ linktocpage=true, % в оглавлении ссылками будут выде
   \def\@reviewerName{#2}
   \HasReviewertrue
 }
+\newcommand{\company}[2]{
+  \def\@companyReviewerTitle{#1}
+  \def\@companyReviewerName{#2}
+  \HasCompanytrue
+}
 \newcommand{\Abstract}[1]{
   \def\@abstract{#1}
 }
 
-%% TODO make title as class options
-\renewcommand{\maketitle}{
-  {
-    \thispagestyle{empty}
+\newcommand{\UnivercityString}{
+  Пермский филиал федерального государственного автономного \\
+  образовате\nocite{*} % для примера библиографии, так лучше не делать
+льного учреждения высшего образования \\
+  Национальный исследовательский университет \\
+  <<Высшая школа экономики>>
+}
 
-    \centering
-
-    {
-      Пермский филиал федерального государственного автономного \\
-      образовательного учреждения высшего образования \\
-      Национальный исследовательский университет \\
-      <<Высшая школа экономики>>
-    }
+\newcommand\KRTitle{
+    \UnivercityString
 
     \vfill
 
@@ -558,20 +572,139 @@ linktocpage=true, % в оглавлении ссылками будут выде
     Пермь, \@year{} год
 
     \newpage
-  }
+}
 
+%https://tex.stackexchange.com/questions/55698/text-under-a-line
+\newcommand\tline[3]{
+    $\underset{\text{\tiny{(#3)}}}{\underline{\makebox[#1\textwidth][l]{#2}}}$
+}
+\newcommand\PracticeTitle{
+
+  \UnivercityString
+
+  \@facultyString
+
+
+  Образовательная программа бакалавриата <<\@specName>>
+
+  \vfill
+  \vfill
+  \textbf{ОТЧЕТ\\ по преддипломной практике}
+
+  \vfill
+  \vfill
+  \hfill\begin{minipage}[c]{0.5\textwidth}
+    Выполнил студент группы~\underline{\makebox[0.37\textwidth][l]{\@group}}\\
+    \tline{1}{\@author}{Фамилия, Имя, Отчество}\\
+    \tline{1}{\phantom{TEXT}}{подпись}
+  \end{minipage}
+
+  \vfill
+  {
+  \raggedright
+  \begin{minipage}{0.5\textwidth}
+    Проверили:\\
+    \ifHasCompany
+      Руководитель практики\\
+      от предприятия:\\
+      \tline{1}{\@companyReviewerTitle}{должность}\\
+      \tline{1}{\@companyReviewerName}{Фамилия, Имя, Отчество}\\
+      % если убрать phantom, то размер линии изменится
+      \tline{0.25}{\phantom{TEXT}}{оценка}\hfill\tline{0.5}{\phantom{TEXT}}{подпись}\\
+      \begin{minipage}{\textwidth}
+        \hspace{0.5\textwidth}\tline{0.4}{\phantom{TEXT}}{дата}
+      \end{minipage}\hfill
+    \fi
+    \end{minipage}\hfill
+
+  \begin{minipage}{0.5\textwidth}
+    Руководитель практики\\
+    от НИУ ВШЭ -- Пермь:\\
+    \tline{1}{\@supervisorTitle, \@supervisorAcademic}{должность, ученая степень, ученое звание}\\
+    \tline{1}{\@supervisorName}{Фамилия, Имя, Отчество}\\
+    \tline{0.25}{\phantom{TEXT}}{оценка}\hfill\tline{0.5}{\phantom{TEXT}}{подпись}\\
+    \begin{minipage}{\textwidth}
+        \hspace{0.5\textwidth}\tline{0.4}{\phantom{TEXT}}{дата}
+    \end{minipage}
+  \end{minipage}\hfill
+  }
+  \vfill
+  \vfill
+  \vfill
+
+  \textbf{Пермь, \@year{} год}
+
+  \newpage
+}
+
+\newcommand\LabTitle{
+  \UnivercityString
+
+  \vfill
+
+  \@facultyString
+
+  \vfill
+  \vfill
+  \vfill
+
+  \@author
+
+
+
+  \vfill
+  \vfill
+
+  \textbf{\MakeUppercase{\@title}}
+
+  \textit{\@typeString}
+
+  \vfill
+
+  студента образовательной программы <<\@specName>> \\
+  по направлению подготовки {\underline{\@specCode}}
+
+  \vfill
+  \vfill
+  \vfill
+
+  \hfill
+  \ifHasSupervisor
+  \begin{minipage}[t]{0.4\textwidth}
+    Руководитель \\
+    \@supervisorTitle
+
+    \vspace{10mm}
+
+    \hrule
+    \vspace{3mm}
+
+    \@supervisorName
+  \end{minipage}
+  \fi
+  \vfill
+  \vfill
+  \vfill
+
+  Пермь, \@year{} год
+
+  \newpage
+}
+
+\renewcommand{\maketitle}{
+  { \thispagestyle{empty}
+
+  \centering
+   \ifIsPractice \PracticeTitle \else \KRTitle \fi }
   \chapter**{Аннотация}
-  \thispagestyle{empty}
-  \@abstract
+  \thispagestyle{empty} \@abstract
 
   \chapter**{Оглавление}
 
   \@starttoc{toc}
 
-  \newpage
-
+\newpage
 }
-
 
 \newsavebox{\TABLEbox}
 \newenvironment{TABLE}[2][t]
