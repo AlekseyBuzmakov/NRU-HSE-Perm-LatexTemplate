@@ -423,7 +423,7 @@ linktocpage=true, % в оглавлении ссылками будут выде
 
 \def\@facultyString{UNKNOWN FACULTY}
 \def\@typeString{UNKNOWN WORK TYPE}
-\def\@specName{UNKOWN SPECIALIZATION}
+\def\@specName{UNKNOWN SPECIALIZATION}
 \def\@specCode{00.00.00.UNKOWN SPECIALIZATION}
 
 \newif\ifIsPractice
@@ -453,7 +453,19 @@ linktocpage=true, % в оглавлении ссылками будут выде
 \DeclareVoidOption{VKR}{
   \def\@typeString{Выпускная квалификационная работа}
 }
-\DeclareVoidOption{Practice}{
+
+\DeclareVoidOption{Study}{
+  \def\@typeString{учебной практике}
+  \IsPracticetrue
+}
+
+\DeclareVoidOption{Prod}{
+  \def\@typeString{производственной практике}
+  \IsPracticetrue
+}
+
+\DeclareVoidOption{Pregrad}{
+  \def\@typeString{преддипломной практике}
   \IsPracticetrue
 }
 
@@ -503,141 +515,12 @@ linktocpage=true, % в оглавлении ссылками будут выде
 
 \newcommand{\UnivercityString}{
   Пермский филиал федерального государственного автономного \\
-  образовате\nocite{*} % для примера библиографии, так лучше не делать
-льного учреждения высшего образования \\
+  образовательного учреждения высшего образования \\
   Национальный исследовательский университет \\
   <<Высшая школа экономики>>
 }
 
 \newcommand\KRTitle{
-    \UnivercityString
-
-    \vfill
-
-    \@facultyString
-
-    \vfill
-    \vfill
-    \vfill
-
-    \@author
-
-    \vfill
-    \vfill
-
-    \textbf{\MakeUppercase{\@title}}
-
-    \textit{\@typeString}
-
-    \vfill
-
-    студента образовательной программы <<\@specName>> \\
-    по направлению подготовки \underline{\@specCode}
-
-    \vfill
-    \vfill
-    \vfill
-
-    \ifHasReviewer
-      \begin{minipage}[t]{0.4\textwidth}
-        \begin{flushleft}
-          Рецензент \\
-          \nohyphens{\@reviewerTitle}
-
-          \vspace{2mm}
-
-          \@reviewerName
-        \end{flushleft}
-      \end{minipage}
-    \fi
-    \hfill
-    \begin{minipage}[t]{0.4\textwidth}
-      \begin{flushleft}
-        Руководитель \\
-        \nohyphens{\@supervisorTitle}, \nohyphens{\@supervisorAcademic}
-
-        \vspace{10mm}
-
-        \hrule
-        \vspace{3mm}
-
-        \@supervisorName
-      \end{flushleft}
-    \end{minipage}
-
-    \vfill
-    \vfill
-    \vfill
-
-    Пермь, \@year{} год
-
-    \newpage
-}
-
-%https://tex.stackexchange.com/questions/55698/text-under-a-line
-\newcommand\tline[3]{
-    $\underset{\text{\tiny{(#3)}}}{\underline{\makebox[#1\textwidth][l]{#2}}}$
-}
-\newcommand\PracticeTitle{
-
-  \UnivercityString
-
-  \@facultyString
-
-
-  Образовательная программа бакалавриата <<\@specName>>
-
-  \vfill
-  \vfill
-  \textbf{ОТЧЕТ\\ по преддипломной практике}
-
-  \vfill
-  \vfill
-  \hfill\begin{minipage}[c]{0.5\textwidth}
-    Выполнил студент группы~\underline{\makebox[0.37\textwidth][l]{\@group}}\\
-    \tline{1}{\@author}{Фамилия, Имя, Отчество}\\
-    \tline{1}{\phantom{TEXT}}{подпись}
-  \end{minipage}
-
-  \vfill
-  {
-  \raggedright
-  \begin{minipage}{0.5\textwidth}
-    Проверили:\\
-    \ifHasCompany
-      Руководитель практики\\
-      от предприятия:\\
-      \tline{1}{\@companyReviewerTitle}{должность}\\
-      \tline{1}{\@companyReviewerName}{Фамилия, Имя, Отчество}\\
-      % если убрать phantom, то размер линии изменится
-      \tline{0.25}{\phantom{TEXT}}{оценка}\hfill\tline{0.5}{\phantom{TEXT}}{подпись}\\
-      \begin{minipage}{\textwidth}
-        \hspace{0.5\textwidth}\tline{0.4}{\phantom{TEXT}}{дата}
-      \end{minipage}\hfill
-    \fi
-    \end{minipage}\hfill
-
-  \begin{minipage}{0.5\textwidth}
-    Руководитель практики\\
-    от НИУ ВШЭ -- Пермь:\\
-    \tline{1}{\@supervisorTitle, \@supervisorAcademic}{должность, ученая степень, ученое звание}\\
-    \tline{1}{\@supervisorName}{Фамилия, Имя, Отчество}\\
-    \tline{0.25}{\phantom{TEXT}}{оценка}\hfill\tline{0.5}{\phantom{TEXT}}{подпись}\\
-    \begin{minipage}{\textwidth}
-        \hspace{0.5\textwidth}\tline{0.4}{\phantom{TEXT}}{дата}
-    \end{minipage}
-  \end{minipage}\hfill
-  }
-  \vfill
-  \vfill
-  \vfill
-
-  \textbf{Пермь, \@year{} год}
-
-  \newpage
-}
-
-\newcommand\LabTitle{
   \UnivercityString
 
   \vfill
@@ -650,8 +533,6 @@ linktocpage=true, % в оглавлении ссылками будут выде
 
   \@author
 
-
-
   \vfill
   \vfill
 
@@ -662,26 +543,39 @@ linktocpage=true, % в оглавлении ссылками будут выде
   \vfill
 
   студента образовательной программы <<\@specName>> \\
-  по направлению подготовки {\underline{\@specCode}}
+  по направлению подготовки \underline{\@specCode}
 
   \vfill
   \vfill
   \vfill
 
-  \hfill
-  \ifHasSupervisor
-  \begin{minipage}[t]{0.4\textwidth}
-    Руководитель \\
-    \@supervisorTitle
+  \ifHasReviewer
+    \begin{minipage}[t]{0.4\textwidth}
+      \begin{flushleft}
+        Рецензент \\
+        \nohyphens{\@reviewerTitle}
 
-    \vspace{10mm}
+        \vspace{2mm}
 
-    \hrule
-    \vspace{3mm}
-
-    \@supervisorName
-  \end{minipage}
+        \@reviewerName
+      \end{flushleft}
+    \end{minipage}
   \fi
+  \hfill
+  \begin{minipage}[t]{0.4\textwidth}
+    \begin{flushleft}
+      Руководитель \\
+      \nohyphens{\@supervisorTitle}, \nohyphens{\@supervisorAcademic}
+
+      \vspace{10mm}
+
+      \hrule
+      \vspace{3mm}
+
+      \@supervisorName
+    \end{flushleft}
+  \end{minipage}
+
   \vfill
   \vfill
   \vfill
@@ -691,19 +585,87 @@ linktocpage=true, % в оглавлении ссылками будут выде
   \newpage
 }
 
-\renewcommand{\maketitle}{
-  { \thispagestyle{empty}
+%https://tex.stackexchange.com/questions/55698/text-under-a-line
+\newcommand\tline[3]{
+  $\underset{\text{\tiny{(#3)}}}{\underline{\makebox[#1\textwidth][l]{#2}}}$
+}
+\newcommand\PracticeTitle{
 
-  \centering
-   \ifIsPractice \PracticeTitle \else \KRTitle \fi }
+  \UnivercityString
+
+  \@facultyString
+
+
+  Образовательная программа бакалавриата <<\@specName>>
+
+  \vfill
+  \vfill
+  \textbf{ОТЧЕТ\\по \@typeString}
+
+  \vfill
+  \vfill
+  \hfill\begin{minipage}[c]{0.5\textwidth}
+    Выполнил студент группы~\underline{\makebox[0.37\textwidth][l]{\@group}}\\
+    \tline{1}{\@author}{Фамилия, Имя, Отчество}\\
+    \tline{1}{\phantom{TEXT}}{подпись}
+  \end{minipage}
+
+  \vfill
+  {
+    \raggedright
+    \begin{minipage}{0.5\textwidth}
+      \ifHasCompany
+        Проверили:\\
+        Руководитель практики\\
+        от предприятия:\\
+        \tline{1}{\@companyReviewerTitle}{должность}\\
+        \tline{1}{\@companyReviewerName}{Фамилия, Имя, Отчество}\\
+        % если убрать phantom, то размер линии изменится
+        \tline{0.25}{\phantom{TEXT}}{оценка}\hfill\tline{0.5}{\phantom{TEXT}}{подпись}\\
+        \begin{minipage}{\textwidth}
+          \hspace{0.5\textwidth}\tline{0.4}{\phantom{TEXT}}{дата}
+        \end{minipage}\hfill
+      \else
+        Проверил:\\
+      \fi
+    \end{minipage}\hfill
+
+    \begin{minipage}{0.5\textwidth}
+      Руководитель практики\\
+      от НИУ ВШЭ -- Пермь:\\
+      \tline{1}{\@supervisorTitle, \@supervisorAcademic}{должность, ученая степень, ученое звание}\\
+      \tline{1}{\@supervisorName}{Фамилия, Имя, Отчество}\\
+      \tline{0.25}{\phantom{TEXT}}{оценка}\hfill\tline{0.5}{\phantom{TEXT}}{подпись}\\
+      \begin{minipage}{\textwidth}
+        \hspace{0.5\textwidth}\tline{0.4}{\phantom{TEXT}}{дата}
+      \end{minipage}
+    \end{minipage}\hfill
+  }
+  \vfill
+  \vfill
+  \vfill
+
+  \textbf{Пермь, \@year{} год}
+
+  \newpage
+}
+
+\renewcommand{\maketitle}{
+  {
+    \thispagestyle{empty}
+
+    \centering
+    \ifIsPractice \PracticeTitle \else \KRTitle \fi
+  }
   \chapter**{Аннотация}
-  \thispagestyle{empty} \@abstract
+  \thispagestyle{empty}
+  \@abstract
 
   \chapter**{Оглавление}
 
   \@starttoc{toc}
 
-\newpage
+  \newpage
 }
 
 \newsavebox{\TABLEbox}
@@ -748,7 +710,6 @@ linktocpage=true, % в оглавлении ссылками будут выде
 \renewcommand{\appendix}{%
   \label{pg:end} % для указания на номер последней страницы
   \originalappendix
-  % \renewcommand{\thechapter}{\Asbuk{chapter}}
   \renewcommand{\thechapter}{\cyrtoc{\value{chapter}}}
   \renewcommand{\appendixname}{ПРИЛОЖЕНИЕ} % Можно не менять и заменить на команду с \MakeUppercase в \renewcommand у меня локально не компилит, а в overleaf все нормально
   \titleformat{\chapter}{\Large\bfseries\centering}{\MakeUppercase{\chaptertitlename}\ \thechapter}{4pt}{}
