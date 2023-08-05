@@ -27,11 +27,11 @@ latexmk -pdf -f -interaction=nonstopmode $FILENAME.tex
 ```
 
 #### Докер
-Данный способ работает, *если нет обращения к родительской папке*.
+Данный способ работает, **_если нет обращения к родительской папке_**.
 
 [Файл для сборки образа](./Dockerfile). Процесс сборки pdf с помощью Docker несколькими командами:
 1. Сборка контейнера. 
-   Здесь в качестве аргументов сборки передается название файла _FILENAME_ (*без расширения, например если файл main.tex, то передавать просто main*) и папка _DIR_, где файл находится. Если _tex_ файл находится в одной папке с _Dockerfile_. то `--build-arg="DIR=DIR"` можно не передавать. 
+   Здесь в качестве аргументов сборки передается название файла _FILENAME_ (**без расширения, например если файл main.tex, то передавать просто main**) и папка _DIR_, где файл находится. Если _tex_ файл находится в одной папке с _Dockerfile_. то `--build-arg="DIR=DIR"` можно не передавать. 
    ``` shell
    docker build . -t tag_name  --build-arg="DIR=DIR" --build-arg="FILENAME=FILENAME"
    ```
@@ -45,7 +45,7 @@ latexmk -pdf -f -interaction=nonstopmode $FILENAME.tex
     ```shell
     docker cp run_name:/doc/FILENAME.tex DIR/FILENAME.pdf
     ```
-Объединение всех команд в одну (*не для Windows*):
+Объединение всех команд в одну (**_не для Windows_**):
 ``` shell
 DIR=DIR; FILENAME=FILENAME && \
 runID=$(docker run --rm -d $(docker build . -q --build-arg="DIR=${DIR}" --build-arg="FILENAME=${FILENAME}")) && \
@@ -53,14 +53,14 @@ docker cp $runID:/doc/${FILENAME}.tex ${DIR}/${FILENAME}.pdf
 ```
 Для работы этой команды поменять DIR и FILENAME на папку и название файла соответственно. 
 ### Github actions
-Можно сделать, чтобы на каждое изменение файла он сохранялся, как артефакт workflow или сделать автоматическое добавление в репозиторий. [Пример файла со всеми способами.](https://github.com/Samoed/NRU-HSE-Perm-LatexTemplate/blob/main/.github/workflows/example.yml "github workflow")
+Можно сделать, чтобы на каждое изменение файла он сохранялся, как артефакт workflow или сделать автоматическое добавление в репозиторий. [Пример файла со всеми способами.](./.github/workflows/example.yml "github workflow")
 #### Action artifact
 Для скачивания файла надо перейти в список запущенных actions
-![][./img/select_workflow.png]
+![список workflow](./img/select_workflow.png)
 Перейти в последний, где была успешная сборка файла. И внизу будет готовый pdf.
-![][./img/workflow_artifact.png]
+![место артефакта](./img/workflow_artifact.png)
 #### Комит файла
-Добавить в workflow [строчки](https://github.com/Samoed/NRU-HSE-Perm-LatexTemplate/blob/main/.github/workflows/example.yml#L42-L53):
+Добавить в workflow [строчки](./.github/workflows/example.yml#L42-L53):
 
 ```yaml
 - name: GIT commit and push pdf file
