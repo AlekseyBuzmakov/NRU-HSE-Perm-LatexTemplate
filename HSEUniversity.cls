@@ -222,8 +222,6 @@ linktocpage=true, % в оглавлении ссылками будут выде
 \NewBibliographyString{langjapanese}
 \NewBibliographyString{fromjapanese}
 
-% TODO change to printbibliography and \renewcommand{\bibname}{Whatever floats your boat} \renewcommand{\bibsection}{\section{\bibname}}
-% \printbibliography[title={Articles},type=article,sorting=nyt,heading=subbibnumbered]
 \newcommand{\putbibliography}{
   \chapter**{Библиографический список}
   \addcontentsline{toc}{chapter}{Библиографический список}
