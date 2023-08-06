@@ -94,7 +94,10 @@ docker cp $runID:/doc/${FILENAME}.tex ${DIR}/${FILENAME}.pdf
 ```
 ## Советы
 ### Библиография
-При указании источника в `*.bib` указывать `hyphenation={russian}` (или `language={russian}`) или `hyphenation={english}` в зависимости от языка работы.
+При указании источника в `*.bib` указывать `hyphenation={russian}` (или `language={russian}`) или `hyphenation={english}` в зависимости от языка работы. Лучше всего делать с помощью [Zotero](https://www.zotero.org/) и расширения для него [better-bibtex](https://github.com/retorquere/zotero-better-bibtex). Zotero позволит удобно сохранять библиографию и работать с ней. А расширение `better-bibtex` позволит автоматически экспортировать на каком языке публикация. Для установки надо перейти в настройки bettet-bibtex `Export>Fields` и установить `Export language` both, также в этом разделе можно убрать из экспорта аннотацию `fiels to omit` `abstract`. Также можно автоматически обновлять библиографический список `export collection > Выбрать формат "Better Biblatex"` и выбрать нужные настройки. Также для однообразного оформления библиографического списка можно в настройках better bibtex поменять их в разделе `General>citation key formula`. У меня установлено как:
+```
+auth.lower.transliterate + '_' + shorttitle(1,0).transliterate.lower + '_' + year
+```
 #### Цитирования в стиле гост 2011
 Для изменения стиля цитирования под 2008 гост убрать эти строки.
 ``` tex
