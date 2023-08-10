@@ -23,7 +23,9 @@
 5. [project_proposal](project_proposal) - папка с шаблоном для оформления Project Proposal на 4 курсе.
 ## Компиляция
 ### Overleaf
-Скопировать [проект](https://www.overleaf.com/read/mnqnwkmphyhz) и изменять его. Шаблон в процессе принятия. При больших текстах Overleaf не будет успевать компилировать из-за ограничения времени.
+Скопировать [шаблон](https://www.overleaf.com/latex/templates/nru-hse-perm-latextemplate/bhzvsrqnhyxz) или [проект](https://www.overleaf.com/read/mnqnwkmphyhz) и изменять его.
+
+При больших текстах Overleaf не будет успевать компилировать из-за ограничения времени. Для проверки можно отдельно комментировать по блокам, а затем компилировать у себя локально.
 ### Локально
 #### TexLive
 Можно скачать TexLive, Emacs (или другие) и там работать с текстами. Для пользователей Linux надо установить:
